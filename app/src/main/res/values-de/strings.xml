@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Faultier</string>
+    <string name="AddButton">Hinzufügen</string>
+    <string name="listTitle">Deine Listen</string>
+    <string name="todoTitle">Deine To-Dos</string>
+</resources>
