@@ -9,10 +9,10 @@ The app will run on Android devices with an API of 21 or higher.
 
 # Installation
 * Clone the repostory to your local machine using
-```javascript
-git clone 
 ```
-* Open Android studio
+git clone https://github.com/annadoerr/Sloth.git
+```
+* Open the project folder with Android Studio
 * Connect your device to your computer or use an emulator
 * Hit build 
 * You should now be able to use the app. 
