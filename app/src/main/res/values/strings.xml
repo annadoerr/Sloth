@@ -12,4 +12,6 @@
     <string name="entertitle">Enter a Title</string>
     <string name="Zeit">Time</string>
     <string name="uhr">PM/AM</string>
+    <string name="pfeil">Pfeil</string>
+    <string name="save">Save</string>
 </resources>

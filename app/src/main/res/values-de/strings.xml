@@ -13,4 +13,6 @@
     <string name="entertitle">Titel eingeben</string>
     <string name="Zeit">Zeit</string>
     <string name="uhr">Uhr</string>
+    <string name="pfeil">Pfeil</string>
+    <string name="save">Speichern</string>
 </resources>

@@ -6,6 +6,7 @@
     <style name="MyToolBar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:background">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/whiteText</item>
         <item name="android:textColorPrimary">@color/whiteText</item>
     </style>
 

@@ -28,22 +28,7 @@ public class MainActivity extends AppCompatActivity {
         //Changes StatusBar Color
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        populateItemList();
 
-        //Time Picker
-
-
-
-    }
-
-    private void populateItemList() {
-        // Construct the data source
-        ArrayList<ListItem> arrayOfUsers = new ArrayList<ListItem>();
-// Create the adapter to convert the array to views
-        ListAdapter adapter = new ListAdapter(this, arrayOfUsers);
-// Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.listview);
-        listView.setAdapter(adapter);
     }
 
     //What happens when "add" button on MainActivity gets clicked
