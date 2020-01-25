@@ -4,4 +4,13 @@
     <string name="AddButton">Hinzufügen</string>
     <string name="listTitle">Deine Listen</string>
     <string name="todoTitle">Deine To-Dos</string>
+    <string name="Deadline">Deadline</string>
+    <string name="Date" >Datum</string>
+    <string name="Time">Time</string>
+    <string name="yourtitle">Dein Titel</string>
+    <string name="leafs">Blätter:</string>
+    <string name="number">0/6</string>
+    <string name="entertitle">Titel eingeben</string>
+    <string name="Zeit">Zeit</string>
+    <string name="uhr">Uhr</string>
 </resources>

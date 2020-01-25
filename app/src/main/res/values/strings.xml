@@ -3,4 +3,13 @@
     <string name="AddButton">Add</string>
     <string name="listTitle">Your Lists</string>
     <string name="todoTitle">Your To-Dos</string>
+    <string name="Deadline">Deadline</string>
+    <string name="Date">Date</string>
+    <string name="Time">Time</string>
+    <string name="yourtitle">Your Title</string>
+    <string name="leafs">Leafs:</string>
+    <string name="number">0/6</string>
+    <string name="entertitle">Enter a Title</string>
+    <string name="Zeit">Time</string>
+    <string name="uhr">PM/AM</string>
 </resources>
