@@ -14,4 +14,10 @@
     <string name="uhr">PM/AM</string>
     <string name="pfeil">Pfeil</string>
     <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="deleted">List Deleted</string>
+    <string name="updated">List Updated</string>
+    <string name="exceeded">Exceeded Deadline</string>
+    <string name="yourTodo">Your To-Do</string>
 </resources>

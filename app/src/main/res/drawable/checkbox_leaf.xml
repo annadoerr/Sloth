@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
    <item android:state_checked="true"
-       android:drawable="@drawable/blatt_ausgefuellt"/>
+       android:drawable="@drawable/ic_blatt_ausgefuellt"/>
     <item android:state_checked="false"
-        android:drawable="@drawable/blatt"/>
+        android:drawable="@drawable/ic_blatt"/>
 
 </selector>

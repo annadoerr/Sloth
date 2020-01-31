@@ -15,4 +15,10 @@
     <string name="uhr">Uhr</string>
     <string name="pfeil">Pfeil</string>
     <string name="save">Speichern</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="delete">Löschen</string>
+    <string name="deleted">Liste Gelöscht</string>
+    <string name="updated">Liste erneuert</string>
+    <string name="exceeded">Deadline überschritten</string>
+    <string name="yourTodo">Dein To-Do</string>
 </resources>

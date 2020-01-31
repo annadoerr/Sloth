@@ -1,6 +1,7 @@
 package com.example.sloth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -18,43 +19,49 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-public class ToDoActivity extends AppCompatActivity {
+public class EditList extends AppCompatActivity {
 
     EditText enterTitle;
     CheckBox content;
     Button date;
     Button time;
     Calendar calendar = Calendar.getInstance();
-    ListItem listItem;
     DataBase db;
+    ListItem listItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_to_do);
+        setContentView(R.layout.activity_edit_list);
+
+        Intent intent = getIntent();
+        Long id = intent.getLongExtra("ID", 0);
+        db = new DataBase(this);
+        listItem = db.getItem(id);
+
         //Adds AppCompbat Toolbar to Activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         //Changes AppBar Title
-        getSupportActionBar().setTitle(R.string.todoTitle);
+        getSupportActionBar().setTitle(listItem.gettitle());
         //Back Button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Changes StatusBar Color
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-
         //Gets Title and ToDos
         enterTitle = findViewById(R.id.enterTitle);
         content = findViewById(R.id.checkbox);
-        //Hier Time und Date Vertauscht
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
+
+        enterTitle.setText(listItem.gettitle());
+        content.setText(listItem.getContent());
+        date.setText(listItem.getDate());
+        time.setText(listItem.getTime());
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -64,9 +71,9 @@ public class ToDoActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(s.length() != 0) {
-                        getSupportActionBar().setTitle(s);
-                    }
+                if(s.length() != 0) {
+                    getSupportActionBar().setTitle(s);
+                }
             }
 
             @Override
@@ -82,19 +89,18 @@ public class ToDoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(ToDoActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(EditList.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
                         setTime.setText(hourOfDay + ":" + minute);
 
                     }
-                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(ToDoActivity.this));
+                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(EditList.this));
 
                 timePickerDialog.show();
             }
         });
-
 
         //Date Picker
         final Button setDate = findViewById(R.id.date);
@@ -103,11 +109,11 @@ public class ToDoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(ToDoActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditList.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        setDate.setText(dayOfMonth+"."+(month + 1)+"."+year);
+                        setDate.setText(dayOfMonth + "." + (month + 1) + "." + year);
 
                     }
                 },calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
@@ -129,25 +135,21 @@ public class ToDoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.save) {
-            listItem = new ListItem(enterTitle.getText().toString(), content.getText().toString(), date.getText().toString(), time.getText().toString());
-            db = new DataBase(this);
-            db.addItem(listItem);
-            Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
-            gotToMain();
+            listItem.setTitle(enterTitle.getText().toString());
+            listItem.setContent(content.getText().toString());
+            listItem.setDate(date.getText().toString());
+            listItem.setTime(time.getText().toString());
+            int id = db.editList(listItem);
+            if(id == listItem.getID()) {
+                Toast.makeText(this, "List updated" , Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
+            }
+
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            intent.putExtra("ID", listItem.getID());
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void gotToMain() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    //What happens when "add" button on MainActivity gets clicked
-    public void addListClicked(View v) {
-        CheckBox checkbox = findViewById(R.id.checkbox);
-
-
-
     }
 }

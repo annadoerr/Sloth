@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    tools:context=".ToDoActivity">
+    tools:context=".EditList">
 
     <include
         android:id="@id/app_bar"
@@ -15,37 +14,25 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
-        android:id="@+id/verticalContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="25dp"
         android:layout_marginTop="225dp"
-        android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
+        android:layout_marginEnd="25dp"
         android:background="@drawable/background_list_white"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
-
         <CheckBox
             android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="73dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:button="@drawable/checkbox_leaf"
             android:text="@string/pfeil" />
-
     </LinearLayout>
 
     <RelativeLayout
@@ -74,19 +61,6 @@
             android:padding="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <ImageView
-            android:id="@+id/calendar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignStart="@+id/date"
-            android:layout_alignTop="@+id/date"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="0dp"
-            android:contentDescription="@string/Date"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/kalender" />
-
         <Button
             android:id="@+id/date"
             android:layout_width="170dp"
@@ -95,7 +69,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="21dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/rounded_corners_blue"
             android:ems="10"
             android:hint="@string/Date"
@@ -104,18 +78,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/whiteText"
             android:textColorHint="@color/whiteText" />
-
-        <ImageView
-            android:id="@+id/clock"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignStart="@+id/time"
-            android:layout_alignTop="@+id/time"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/Time"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/uhr" />
 
         <Button
             android:id="@+id/time"
@@ -135,24 +97,32 @@
             android:textColor="@color/whiteText"
             android:textColorHint="@color/whiteText" />
 
+        <ImageView
+            android:id="@+id/calendar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignStart="@+id/date"
+            android:layout_alignTop="@+id/date"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="0dp"
+            android:contentDescription="@string/Date"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/kalender" />
+
+        <ImageView
+            android:id="@+id/clock"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignStart="@+id/time"
+            android:layout_alignTop="@+id/time"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/Time"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/uhr" />
+
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/addList"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:background="@drawable/rounded_corners"
-        android:elevation="4dp"
-        android:onClick="addListClicked"
-        android:text="@string/AddButton"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/whiteText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <!---Wenn android:button oder background eingestellt ist funktioniert die App auf dem Handy nicht Bei Check Box-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
