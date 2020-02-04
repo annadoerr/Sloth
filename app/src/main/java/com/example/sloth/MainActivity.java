@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void displayList() {
-
-    }
-
     //What happens when "add" button on MainActivity gets clicked
     public void addListClicked(View v) {
         Intent intent = new Intent (this, ToDoActivity.class);

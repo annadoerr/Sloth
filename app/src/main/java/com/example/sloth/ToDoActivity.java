@@ -7,32 +7,47 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
+
+import static com.example.sloth.R.layout.activity_to_do_item;
 
 public class ToDoActivity extends AppCompatActivity {
 
     EditText enterTitle;
-    CheckBox content;
+    CheckBox checkBox;
     Button date;
     Button time;
+    EditText enterTodo;
     Calendar calendar = Calendar.getInstance();
     ListItem listItem;
+    ToDoItem toDoItem;
     DataBase db;
+    RecyclerView recyclerView;
+    ToDoAdapter adapter;
+    List<ToDoItem> toDoItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +66,11 @@ public class ToDoActivity extends AppCompatActivity {
 
         //Gets Title and ToDos
         enterTitle = findViewById(R.id.enterTitle);
-        content = findViewById(R.id.checkbox);
         //Hier Time und Date Vertauscht
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
+        checkBox = findViewById(R.id.checkbox);
+        enterTodo = findViewById(R.id.enterTodo);
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -126,10 +142,11 @@ public class ToDoActivity extends AppCompatActivity {
         return true;
     }
 
+    //Saves Infos
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.save) {
-            listItem = new ListItem(enterTitle.getText().toString(), content.getText().toString(), date.getText().toString(), time.getText().toString());
+            listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString());
             db = new DataBase(this);
             db.addItem(listItem);
             Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
@@ -143,11 +160,18 @@ public class ToDoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //What happens when "add" button on MainActivity gets clicked
-    public void addListClicked(View v) {
-        CheckBox checkbox = findViewById(R.id.checkbox);
+    //Adds new Checkbox and with Text from EditText
+    public void addTodo(View v) {
+        toDoItem = new ToDoItem(enterTodo.getText().toString());
+        db = new DataBase(this);
+        db.addToDo(toDoItem);
 
+        toDoItems= db.getallTodos();
+        recyclerView = findViewById(R.id.checkboxView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ToDoAdapter(this,toDoItems);
+        recyclerView.setAdapter(adapter);
 
-
+        enterTodo.setText("");
     }
 }

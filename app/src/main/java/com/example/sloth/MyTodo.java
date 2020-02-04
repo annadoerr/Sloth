@@ -2,6 +2,8 @@ package com.example.sloth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +19,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MyTodo extends AppCompatActivity {
 
     DataBase db;
     ListItem listItem;
-    TextView todos;
+    ToDoItem toDoItem;
+    RecyclerView todosView;
     Calendar calendar;
     String todaysDate;
     String currentTime;
@@ -30,6 +34,9 @@ public class MyTodo extends AppCompatActivity {
     String setTime;
     String setDate;
     String dateTime;
+    List<ToDoItem> toDoItems;
+    RecyclerView recyclerView;
+    ToDoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +52,25 @@ public class MyTodo extends AppCompatActivity {
         //Changes StatusBar Color
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        todos = findViewById(R.id.todos);
 
         //ID einer Liste von Adapter bekommen
         Intent intent = getIntent();
         Long id = intent.getLongExtra("ID", 0);
+        Long idTodo = intent.getLongExtra("ID", 0);
 
         //Daten von Datenbank holen
         db = new DataBase(this);
         listItem = db.getItem(id);
+        toDoItem = db.getTodo(idTodo);
+
+        //Display Data
+        toDoItems= db.getallTodos();
+        recyclerView = findViewById(R.id.todosView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ToDoAdapter(this,toDoItems);
+        recyclerView.setAdapter(adapter);
+
         getSupportActionBar().setTitle(listItem.gettitle());
-        todos.setText(listItem.getContent());
-        todos.setMovementMethod(new ScrollingMovementMethod());
 
         //Feedback Screen aufrufen, wenn Deadline überschritten wurde
         //Preparing set Date and current Date
@@ -104,12 +118,14 @@ public class MyTodo extends AppCompatActivity {
             Toast.makeText(this, "Edit",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, EditList.class);
             intent.putExtra("ID",listItem.getID());
+            intent.putExtra("ID",toDoItem.getID());
             startActivity(intent);
 
         }
         if(item.getItemId() == R.id.delete) {
 
             db.deleteList(listItem.getID());
+            db.deleteList(toDoItem.getID());
             Toast.makeText(getApplicationContext(),getString(R.string.deleted) , Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }

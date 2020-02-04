@@ -2,6 +2,8 @@ package com.example.sloth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -20,6 +22,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class EditList extends AppCompatActivity {
 
@@ -30,6 +33,10 @@ public class EditList extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();
     DataBase db;
     ListItem listItem;
+    ToDoItem toDoItem;
+    List<ToDoItem> toDoItems;
+    RecyclerView recyclerView;
+    ToDoAdapter adapter;
 
 
     @Override
@@ -39,8 +46,17 @@ public class EditList extends AppCompatActivity {
 
         Intent intent = getIntent();
         Long id = intent.getLongExtra("ID", 0);
+        Long todoId = intent.getLongExtra("ID", 0);
         db = new DataBase(this);
         listItem = db.getItem(id);
+        toDoItem = db.getTodo(todoId);
+
+        //Get DataBase Data
+        toDoItems= db.getallTodos();
+        recyclerView = findViewById(R.id.editView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ToDoAdapter(this,toDoItems);
+        recyclerView.setAdapter(adapter);
 
         //Adds AppCompbat Toolbar to Activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -59,7 +75,6 @@ public class EditList extends AppCompatActivity {
         time = findViewById(R.id.time);
 
         enterTitle.setText(listItem.gettitle());
-        content.setText(listItem.getContent());
         date.setText(listItem.getDate());
         time.setText(listItem.getTime());
 
@@ -136,11 +151,11 @@ public class EditList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.save) {
             listItem.setTitle(enterTitle.getText().toString());
-            listItem.setContent(content.getText().toString());
             listItem.setDate(date.getText().toString());
             listItem.setTime(time.getText().toString());
             int id = db.editList(listItem);
-            if(id == listItem.getID()) {
+            int todoId = db.editTodo(toDoItem);
+            if(id == listItem.getID() && todoId == toDoItem.getTodo_id()) {
                 Toast.makeText(this, "List updated" , Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
@@ -148,6 +163,7 @@ public class EditList extends AppCompatActivity {
 
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             intent.putExtra("ID", listItem.getID());
+            intent.putExtra("ToDoID", toDoItem.getTodo_id());
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

@@ -14,40 +14,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <LinearLayout
-        android:id="@+id/verticalContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="225dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/background_list_white"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
-
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="73dp"
-            android:layout_weight="1"
-            android:button="@drawable/checkbox_leaf"
-            android:text="@string/pfeil" />
-
-    </LinearLayout>
-
     <RelativeLayout
         android:id="@+id/relativelayout"
         android:layout_width="match_parent"
@@ -138,19 +104,48 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/addList"
-        android:layout_width="200dp"
+        android:id="@+id/addTodo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_alignBaseline="@+id/enterTodo"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
         android:background="@drawable/rounded_corners"
-        android:elevation="4dp"
-        android:onClick="addListClicked"
+        android:onClick="addTodo"
         android:text="@string/AddButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/whiteText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativelayout" />
+
+    <EditText
+        android:id="@+id/enterTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_list_white"
+        android:ems="10"
+        android:padding="10dp"
+        android:hint="@string/yourTodo"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativelayout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/checkboxView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/background_list_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterTodo" />
 
 
     <!---Wenn android:button oder background eingestellt ist funktioniert die App auf dem Handy nicht Bei Check Box-->

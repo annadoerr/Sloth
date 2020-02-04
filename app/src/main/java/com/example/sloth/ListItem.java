@@ -4,25 +4,22 @@ public class ListItem {
 
     private long ID;
     private String title;
-    private String content;
     private String date;
     private String time;
 
 
 
     //ListItem without ID
-    ListItem(String title, String content, String date, String time) {
+    ListItem(String title, String date, String time) {
         this.title = title;
-        this.content = content;
         this.date = date;
         this.time = time;
 
     }
     //ListItem with ID
-    ListItem(long id, String title, String content, String date, String time) {
+    ListItem(long id, String title, String date, String time) {
         this.ID = id;
         this.title = title;
-        this.content = content;
         this.date = date;
         this.time = time;
 
@@ -42,10 +39,6 @@ public class ListItem {
     public String gettitle() { return title; }
 
     public void setTitle(String title) { this.title = title; }
-
-    public String getContent() { return content; }
-
-    public void setContent(String content) { this.content = content; }
 
     public String getDate() {
         return date;
