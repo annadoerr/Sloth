@@ -20,4 +20,7 @@
     <string name="updated">List Updated</string>
     <string name="exceeded">Exceeded Deadline</string>
     <string name="yourTodo">Your To-Do</string>
+    <string name="rip">RIP</string>
+    <string name="faultier_tot">Du hast nicht alle Punkte bis zur  Deadline erledigt. Dein Faultier ist  leider ohne genügend Blätter verhungert… Vielleicht motiviert dich das beim  nächsten Mal  nicht alles  aufzuschieben!</string>
+    <string name="backToList">Back to List</string>
 </resources>

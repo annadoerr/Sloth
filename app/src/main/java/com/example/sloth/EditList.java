@@ -13,9 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -24,7 +24,12 @@ import java.util.Calendar;
 public class EditList extends AppCompatActivity {
 
     EditText enterTitle;
-    CheckBox content;
+    EditText todo;
+    EditText todo1;
+    EditText todo2;
+    EditText todo3;
+    EditText todo4;
+    EditText todo5;
     Button date;
     Button time;
     Calendar calendar = Calendar.getInstance();
@@ -54,14 +59,24 @@ public class EditList extends AppCompatActivity {
 
         //Gets Title and ToDos
         enterTitle = findViewById(R.id.enterTitle);
-        content = findViewById(R.id.checkbox);
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
+        todo = findViewById(R.id.todoText);
+        todo1 = findViewById(R.id.todoText1);
+        todo2 = findViewById(R.id.todoText2);
+        todo3 = findViewById(R.id.todoText3);
+        todo4 = findViewById(R.id.todoText4);
+        todo5 = findViewById(R.id.todoText5);
 
         enterTitle.setText(listItem.gettitle());
-        content.setText(listItem.getContent());
         date.setText(listItem.getDate());
         time.setText(listItem.getTime());
+        todo.setText(listItem.getTodo());
+        todo1.setText(listItem.getTodo1());
+        todo2.setText(listItem.getTodo2());
+        todo3.setText(listItem.getTodo3());
+        todo4.setText(listItem.getTodo4());
+        todo5.setText(listItem.getTodo5());
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -136,9 +151,14 @@ public class EditList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.save) {
             listItem.setTitle(enterTitle.getText().toString());
-            listItem.setContent(content.getText().toString());
             listItem.setDate(date.getText().toString());
             listItem.setTime(time.getText().toString());
+            listItem.setTodo(todo.getText().toString());
+            listItem.setTodo1(todo1.getText().toString());
+            listItem.setTodo2(todo2.getText().toString());
+            listItem.setTodo3(todo3.getText().toString());
+            listItem.setTodo4(todo4.getText().toString());
+            listItem.setTodo5(todo5.getText().toString());
             int id = db.editList(listItem);
             if(id == listItem.getID()) {
                 Toast.makeText(this, "List updated" , Toast.LENGTH_SHORT).show();

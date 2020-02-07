@@ -2,6 +2,7 @@ package com.example.sloth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,9 +23,14 @@ public class MyTodo extends AppCompatActivity {
 
     DataBase db;
     ListItem listItem;
-    TextView todos;
+    TextView todo;
+    TextView todo1;
+    TextView todo2;
+    TextView todo3;
+    TextView todo4;
+    TextView todo5;
     Calendar calendar;
-    String todaysDate;
+    String currentDate;
     String currentTime;
     String currentDateTime;
     String setTime;
@@ -45,7 +51,12 @@ public class MyTodo extends AppCompatActivity {
         //Changes StatusBar Color
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        todos = findViewById(R.id.todos);
+        todo = findViewById(R.id.todoText);
+        todo1 = findViewById(R.id.todoText1);
+        todo2 = findViewById(R.id.todoText2);
+        todo3 = findViewById(R.id.todoText3);
+        todo4 = findViewById(R.id.todoText4);
+        todo5 = findViewById(R.id.todoText5);
 
         //ID einer Liste von Adapter bekommen
         Intent intent = getIntent();
@@ -55,25 +66,36 @@ public class MyTodo extends AppCompatActivity {
         db = new DataBase(this);
         listItem = db.getItem(id);
         getSupportActionBar().setTitle(listItem.gettitle());
-        todos.setText(listItem.getContent());
-        todos.setMovementMethod(new ScrollingMovementMethod());
+        todo.setText(listItem.getTodo());
+        todo1.setText(listItem.getTodo1());
+        todo2.setText(listItem.getTodo2());
+        todo3.setText(listItem.getTodo3());
+        todo4.setText(listItem.getTodo4());
+        todo5.setText(listItem.getTodo5());
 
         //Feedback Screen aufrufen, wenn Deadline überschritten wurde
         //Preparing set Date and current Date
         setTime = listItem.getTime();
         setDate = listItem.getDate();
-        dateTime =setTime+" "+setDate;
+        dateTime =setDate+" "+setTime;
 
+        //Get Todays Date and Time
         calendar = Calendar.getInstance();
-        todaysDate = calendar.get(Calendar.DAY_OF_MONTH)+"."+calendar.get(Calendar.MONTH + 1)+"."+calendar.get(Calendar.YEAR);
-        currentTime = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE);
-        currentDateTime = todaysDate+" "+currentTime;
+        currentDate = calendar.get(Calendar.DAY_OF_MONTH)+"."+(calendar.get(Calendar.MONTH)+1)+"."+calendar.get(Calendar.YEAR);
+        currentTime = zero(calendar.get(Calendar.HOUR))+":"+zero(calendar.get(Calendar.MINUTE));
+        currentDateTime = currentDate+" "+currentTime;
+
+        Log.d("calendar", "Date and Time " + currentDate + "and" + currentTime);
+        Log.d("calendar2", "Date" + setDate);
+        Log.d("calendar1", "Time" + setTime);
+        Log.d("calendar3", "dateTime" + dateTime);
+        Log.d("calendar4","currentDateTime" + currentDateTime);
 
         try {
             //Parsing dates for comparing
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             Date date1 = sdf.parse(setDate);
-            Date date2 = sdf.parse(todaysDate);
+            Date date2 = sdf.parse(currentDate);
 
             //Comparing the dates
             if(date1.before(date2)){
@@ -83,11 +105,20 @@ public class MyTodo extends AppCompatActivity {
             if(date1.after(date2)){
                 Log.e("app", "Date1 is after Date2");
                 Intent i = new Intent(this, FeedbackOne.class);
+                i.putExtra("ID",listItem.getID());
                 startActivity(i);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private String zero(int i) {
+        if(i<10) {
+            return "0" + i;
+        }else{
+            return String.valueOf(i);
         }
     }
 

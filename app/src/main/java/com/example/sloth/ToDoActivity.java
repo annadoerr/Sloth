@@ -8,11 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -20,17 +20,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-
 public class ToDoActivity extends AppCompatActivity {
 
     EditText enterTitle;
-    CheckBox content;
     Button date;
     Button time;
+    EditText enterTodo, enterTodo1, enterTodo2, enterTodo3, enterTodo4, enterTodo5;
     Calendar calendar = Calendar.getInstance();
+    String currentDate;
+    String currentTime;
     ListItem listItem;
     DataBase db;
 
@@ -49,12 +48,16 @@ public class ToDoActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
 
-        //Gets Title and ToDos
+        //Gets Title and ToDos, Date and Time
         enterTitle = findViewById(R.id.enterTitle);
-        content = findViewById(R.id.checkbox);
-        //Hier Time und Date Vertauscht
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
+        enterTodo = findViewById(R.id.todoText);
+        enterTodo1 = findViewById(R.id.todoText1);
+        enterTodo2 = findViewById(R.id.todoText2);
+        enterTodo3 = findViewById(R.id.todoText3);
+        enterTodo4 = findViewById(R.id.todoText4);
+        enterTodo5 = findViewById(R.id.todoText5);
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -119,6 +122,7 @@ public class ToDoActivity extends AppCompatActivity {
 
     }
 
+
     //Adds save option for note
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,7 +133,9 @@ public class ToDoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.save) {
-            listItem = new ListItem(enterTitle.getText().toString(), content.getText().toString(), date.getText().toString(), time.getText().toString());
+            listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
+                    enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),
+                    enterTodo5.getText().toString());
             db = new DataBase(this);
             db.addItem(listItem);
             Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
@@ -141,13 +147,5 @@ public class ToDoActivity extends AppCompatActivity {
     public void gotToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    //What happens when "add" button on MainActivity gets clicked
-    public void addListClicked(View v) {
-        CheckBox checkbox = findViewById(R.id.checkbox);
-
-
-
     }
 }

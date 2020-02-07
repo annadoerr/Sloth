@@ -21,4 +21,7 @@
     <string name="updated">Liste erneuert</string>
     <string name="exceeded">Deadline überschritten</string>
     <string name="yourTodo">Dein To-Do</string>
+    <string name="rip">RIP</string>
+    <string name="faultier_tot">Du hast nicht alle Punkte bis zur  Deadline erledigt. Dein Faultier ist  leider ohne genügend Blätter verhungert… Vielleicht motiviert dich das beim  nächsten Mal  nicht alles  aufzuschieben!</string>
+    <string name="backToList">Zurück zur Liste</string>
 </resources>

@@ -13,17 +13,179 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/todos"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:text="TextView"
+    <RelativeLayout
+        android:id="@+id/checkboxLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/background_list_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"/>
+        app:layout_constraintVertical_bias="1.0"
+        tools:context=".ToDoItem">
+
+        <TextView
+            android:id="@+id/todoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/checkbox"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/checkbox"
+            android:background="@color/whiteText"
+            android:ems="10"
+            android:hint="@string/yourTodo"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/checkbox_leaf"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/todoText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/todoText"
+            android:layout_alignBaseline="@+id/checkbox1"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/checkbox1"
+            android:background="@color/whiteText"
+            android:ems="10"
+            android:hint="@string/yourTodo"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <CheckBox
+            android:id="@+id/checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:button="@drawable/checkbox_leaf"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox" />
+
+        <TextView
+            android:id="@+id/todoText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/todoText1"
+            android:layout_alignBaseline="@+id/checkbox2"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/checkbox2"
+            android:background="@color/whiteText"
+            android:ems="10"
+            android:hint="@string/yourTodo"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <CheckBox
+            android:id="@+id/checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox1"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/checkbox_leaf"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/todoText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/todoText2"
+            android:layout_alignBaseline="@+id/checkbox3"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/checkbox"
+            android:background="@color/whiteText"
+            android:ems="10"
+            android:hint="@string/yourTodo"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <CheckBox
+            android:id="@+id/checkbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox2"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/checkbox_leaf"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/todoText4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/todoText3"
+            android:layout_alignBaseline="@+id/checkbox4"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="13dp"
+            android:layout_toEndOf="@+id/checkbox"
+            android:background="@color/whiteText"
+            android:ems="10"
+            android:hint="@string/yourTodo"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <CheckBox
+            android:id="@+id/checkbox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox3"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/checkbox_leaf"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/todoText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/todoText4"
+            android:layout_alignBaseline="@+id/checkbox5"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/checkbox"
+            android:background="@color/whiteText"
+            android:ems="10"
+            android:hint="@string/yourTodo"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <CheckBox
+            android:id="@+id/checkbox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox4"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/checkbox_leaf"
+            android:padding="10dp" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

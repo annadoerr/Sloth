@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         holder.title.setText(title);
         holder.dateView.setText(date);
         holder.timeView.setText(time);
-
     }
 
     @Override
