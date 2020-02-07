@@ -13,12 +13,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.Calendar;
 public class ToDoActivity extends AppCompatActivity {
@@ -27,6 +31,8 @@ public class ToDoActivity extends AppCompatActivity {
     Button date;
     Button time;
     EditText enterTodo, enterTodo1, enterTodo2, enterTodo3, enterTodo4, enterTodo5;
+    CheckBox checkBox;
+    String checkedValue;
     Calendar calendar = Calendar.getInstance();
     String currentDate;
     String currentTime;
@@ -58,6 +64,20 @@ public class ToDoActivity extends AppCompatActivity {
         enterTodo3 = findViewById(R.id.todoText3);
         enterTodo4 = findViewById(R.id.todoText4);
         enterTodo5 = findViewById(R.id.todoText5);
+        checkBox = findViewById(R.id.checkbox);
+
+        // CheckBox onchanged Listener
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue = "1";
+                } else {
+                    checkedValue = "0";
+                }
+            }
+        });
+
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -135,7 +155,8 @@ public class ToDoActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.save) {
             listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
                     enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),
-                    enterTodo5.getText().toString());
+                    enterTodo5.getText().toString(), checkedValue);
+
             db = new DataBase(this);
             db.addItem(listItem);
             Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();

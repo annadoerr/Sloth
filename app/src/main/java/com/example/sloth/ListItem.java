@@ -12,11 +12,13 @@ public class ListItem {
     private String todo3;
     private String todo4;
     private String todo5;
+    public String isDone;
 
 
 
     //ListItem without ID
-    ListItem(String title, String date, String time, String todo, String todo1, String todo2, String todo3, String todo4, String todo5) {
+    ListItem(String title, String date, String time, String todo, String todo1, String todo2, String todo3, String todo4, String todo5,
+             String isDone) {
         this.title = title;
         this.date = date;
         this.time = time;
@@ -26,10 +28,12 @@ public class ListItem {
         this.todo3 = todo3;
         this.todo4 = todo4;
         this.todo5 = todo5;
+        this.isDone= isDone;
 
     }
     //ListItem with ID
-    ListItem(long id, String title, String date, String time, String todo, String todo1, String todo2, String todo3, String todo4, String todo5) {
+    ListItem(long id, String title, String date, String time, String todo, String todo1, String todo2, String todo3, String todo4, String todo5,
+             String isDone) {
         this.ID = id;
         this.title = title;
         this.date = date;
@@ -40,7 +44,7 @@ public class ListItem {
         this.todo3 = todo3;
         this.todo4 = todo4;
         this.todo5 = todo5;
-
+        this.isDone = isDone;
     }
 
     //Instance of ListItem
@@ -126,4 +130,11 @@ public class ListItem {
         this.todo5 = todo5;
     }
 
+    public String getIsDone() {
+        return isDone;
+    }
+
+    public void setIsDone(String isDone) {
+        this.isDone = isDone;
+    }
 }

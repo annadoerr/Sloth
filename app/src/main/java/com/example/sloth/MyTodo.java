@@ -2,19 +2,17 @@ package com.example.sloth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,12 +21,10 @@ public class MyTodo extends AppCompatActivity {
 
     DataBase db;
     ListItem listItem;
-    TextView todo;
-    TextView todo1;
-    TextView todo2;
-    TextView todo3;
-    TextView todo4;
-    TextView todo5;
+    TextView todo, todo1, todo2, todo3, todo4, todo5;
+    CheckBox checkBox;
+    String checkedValue;
+    String one;
     Calendar calendar;
     String currentDate;
     String currentTime;
@@ -57,6 +53,7 @@ public class MyTodo extends AppCompatActivity {
         todo3 = findViewById(R.id.todoText3);
         todo4 = findViewById(R.id.todoText4);
         todo5 = findViewById(R.id.todoText5);
+        checkBox = findViewById(R.id.checkbox);
 
         //ID einer Liste von Adapter bekommen
         Intent intent = getIntent();
@@ -72,6 +69,16 @@ public class MyTodo extends AppCompatActivity {
         todo3.setText(listItem.getTodo3());
         todo4.setText(listItem.getTodo4());
         todo5.setText(listItem.getTodo5());
+        //Set CheckBox to checked if it value was saved as 1
+        checkedValue = listItem.getIsDone();
+        one = "1";
+        Log.d("Value", "checked?" +" + "+checkedValue);
+
+        if(checkedValue.equals(one)) {
+            checkBox.setChecked(true);
+        } else {
+            checkBox.setChecked(false);
+        }
 
         //Feedback Screen aufrufen, wenn Deadline überschritten wurde
         //Preparing set Date and current Date

@@ -13,9 +13,9 @@ import java.util.List;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "DataTable";
-        private static final String TABLE_NAME = "ItemsTable";
+        private static final String TABLE_NAME = "ListTable";
 
        public DataBase(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -33,6 +33,7 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String KEY_TODO3 = "todo3";
     private static final String KEY_TODO4 = "todo4";
     private static final String KEY_TODO5 = "todo5";
+    private static final String KEY_DONE = "done";
 
 
     // CREATE TABLE
@@ -48,7 +49,8 @@ public class DataBase extends SQLiteOpenHelper {
                 KEY_TODO2+" TEXT,"+
                 KEY_TODO3+" TEXT,"+
                 KEY_TODO4+" TEXT,"+
-                KEY_TODO5+" TEXT"
+                KEY_TODO5+" TEXT, "+
+                KEY_DONE+" TEXT"
                 +" )";
         db.execSQL(createDb);
     }
@@ -75,6 +77,7 @@ public class DataBase extends SQLiteOpenHelper {
         c.put(KEY_TODO3, listItem.getTodo3());
         c.put(KEY_TODO4, listItem.getTodo4());
         c.put(KEY_TODO5, listItem.getTodo5());
+        c.put(KEY_DONE, listItem.getIsDone());
 
         long ID = db.insert(TABLE_NAME,null, c);
         Log.d("Inserted", "ID" + ID);
@@ -86,7 +89,7 @@ public class DataBase extends SQLiteOpenHelper {
         // Select all from databaseTable where id=1
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_NAME,new String[]{KEY_ID, KEY_TITLE, KEY_DATE, KEY_TIME, KEY_TODO, KEY_TODO1, KEY_TODO2, KEY_TODO3,
-                KEY_TODO4, KEY_TODO5},KEY_ID+"=?",
+                KEY_TODO4, KEY_TODO5, KEY_DONE},KEY_ID+"=?",
                 new String[]{String.valueOf(id)},null, null, null);
 
         if(cursor != null)
@@ -102,7 +105,8 @@ public class DataBase extends SQLiteOpenHelper {
                     cursor.getString(6),
                     cursor.getString(7),
                     cursor.getString(8),
-                    cursor.getString(9));
+                    cursor.getString(9),
+                    cursor.getString(10));
 
             return item;
     }
@@ -125,6 +129,7 @@ public class DataBase extends SQLiteOpenHelper {
                 listItem.setTodo3(cursor.getString(7));
                 listItem.setTodo4(cursor.getString(8));
                 listItem.setTodo5(cursor.getString(9));
+                listItem.setIsDone(cursor.getString(10));
 
 
                 allItems.add(listItem);
@@ -150,6 +155,8 @@ public class DataBase extends SQLiteOpenHelper {
         c.put(KEY_TODO3,listItem.getTodo3());
         c.put(KEY_TODO4,listItem.getTodo4());
         c.put(KEY_TODO5,listItem.getTodo5());
+        c.put(KEY_DONE, listItem.getIsDone());
+
         return db.update(TABLE_NAME,c,KEY_ID+"=?",new String[]{String.valueOf(listItem.getID())});
     }
 

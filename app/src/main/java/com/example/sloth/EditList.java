@@ -9,10 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,12 +27,10 @@ import java.util.Calendar;
 public class EditList extends AppCompatActivity {
 
     EditText enterTitle;
-    EditText todo;
-    EditText todo1;
-    EditText todo2;
-    EditText todo3;
-    EditText todo4;
-    EditText todo5;
+    EditText todo, todo1, todo2, todo3, todo4, todo5;
+    CheckBox checkBox;
+    String checkedValue;
+    String one;
     Button date;
     Button time;
     Calendar calendar = Calendar.getInstance();
@@ -67,6 +68,7 @@ public class EditList extends AppCompatActivity {
         todo3 = findViewById(R.id.todoText3);
         todo4 = findViewById(R.id.todoText4);
         todo5 = findViewById(R.id.todoText5);
+        checkBox = findViewById(R.id.checkbox);
 
         enterTitle.setText(listItem.gettitle());
         date.setText(listItem.getDate());
@@ -77,6 +79,28 @@ public class EditList extends AppCompatActivity {
         todo3.setText(listItem.getTodo3());
         todo4.setText(listItem.getTodo4());
         todo5.setText(listItem.getTodo5());
+        //Set CheckBox to checked if value was saved as 1
+        checkedValue = listItem.getIsDone();
+        one = "1";
+        Log.d("Value", "checked?" +" + "+checkedValue);
+
+        if(checkedValue.equals(one)) {
+            checkBox.setChecked(true);
+        } else {
+            checkBox.setChecked(false);
+        }
+
+        // CheckBox onchanged Listener
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue = "1";
+                } else {
+                    checkedValue = "0";
+                }
+            }
+        });
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -159,6 +183,7 @@ public class EditList extends AppCompatActivity {
             listItem.setTodo3(todo3.getText().toString());
             listItem.setTodo4(todo4.getText().toString());
             listItem.setTodo5(todo5.getText().toString());
+            listItem.setIsDone(checkedValue);
             int id = db.editList(listItem);
             if(id == listItem.getID()) {
                 Toast.makeText(this, "List updated" , Toast.LENGTH_SHORT).show();
