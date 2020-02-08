@@ -13,9 +13,9 @@ import java.util.List;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "DataTable";
-        private static final String TABLE_NAME = "ListTable";
+    private static final int DATABASE_VERSION = 6;
+    private static final String DATABASE_NAME = "AppTable";
+    private static final String TABLE_NAME = "MyTable";
 
        public DataBase(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -34,6 +34,12 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String KEY_TODO4 = "todo4";
     private static final String KEY_TODO5 = "todo5";
     private static final String KEY_DONE = "done";
+    private static final String KEY_DONE1 = "done1";
+    private static final String KEY_DONE2 = "done2";
+    private static final String KEY_DONE3 = "done3";
+    private static final String KEY_DONE4 = "done4";
+    private static final String KEY_DONE5 = "done5";
+    private static final String KEY_CHECKED_NUMBER = "checkedNumber";
 
 
     // CREATE TABLE
@@ -50,7 +56,13 @@ public class DataBase extends SQLiteOpenHelper {
                 KEY_TODO3+" TEXT,"+
                 KEY_TODO4+" TEXT,"+
                 KEY_TODO5+" TEXT, "+
-                KEY_DONE+" TEXT"
+                KEY_DONE+" TEXT, "+
+                KEY_DONE1+" TEXT, "+
+                KEY_DONE2+" TEXT, "+
+                KEY_DONE3+" TEXT, "+
+                KEY_DONE4+" TEXT, "+
+                KEY_DONE5+" TEXT, "+
+                KEY_CHECKED_NUMBER+" TEXT"
                 +" )";
         db.execSQL(createDb);
     }
@@ -59,7 +71,7 @@ public class DataBase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if(oldVersion >= newVersion)
             return;
-
+        Log.d("TableUpgrade", "Die Tabelle mit Versionsnummer " + oldVersion + " wird entfernt.");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
 
@@ -78,6 +90,12 @@ public class DataBase extends SQLiteOpenHelper {
         c.put(KEY_TODO4, listItem.getTodo4());
         c.put(KEY_TODO5, listItem.getTodo5());
         c.put(KEY_DONE, listItem.getIsDone());
+        c.put(KEY_DONE1, listItem.getIsDone1());
+        c.put(KEY_DONE2, listItem.getIsDone2());
+        c.put(KEY_DONE3, listItem.getIsDone3());
+        c.put(KEY_DONE4, listItem.getIsDone4());
+        c.put(KEY_DONE5, listItem.getIsDone5());
+        c.put(KEY_CHECKED_NUMBER, listItem.getCheckedNumber());
 
         long ID = db.insert(TABLE_NAME,null, c);
         Log.d("Inserted", "ID" + ID);
@@ -89,7 +107,7 @@ public class DataBase extends SQLiteOpenHelper {
         // Select all from databaseTable where id=1
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_NAME,new String[]{KEY_ID, KEY_TITLE, KEY_DATE, KEY_TIME, KEY_TODO, KEY_TODO1, KEY_TODO2, KEY_TODO3,
-                KEY_TODO4, KEY_TODO5, KEY_DONE},KEY_ID+"=?",
+                KEY_TODO4, KEY_TODO5, KEY_DONE, KEY_DONE1, KEY_DONE2, KEY_DONE3, KEY_DONE4, KEY_DONE5, KEY_CHECKED_NUMBER},KEY_ID+"=?",
                 new String[]{String.valueOf(id)},null, null, null);
 
         if(cursor != null)
@@ -106,7 +124,13 @@ public class DataBase extends SQLiteOpenHelper {
                     cursor.getString(7),
                     cursor.getString(8),
                     cursor.getString(9),
-                    cursor.getString(10));
+                    cursor.getString(10),
+                    cursor.getString(11),
+                    cursor.getString(12),
+                    cursor.getString(13),
+                    cursor.getString(14),
+                    cursor.getString(15),
+                    cursor.getString(16));
 
             return item;
     }
@@ -130,6 +154,12 @@ public class DataBase extends SQLiteOpenHelper {
                 listItem.setTodo4(cursor.getString(8));
                 listItem.setTodo5(cursor.getString(9));
                 listItem.setIsDone(cursor.getString(10));
+                listItem.setIsDone1(cursor.getString(11));
+                listItem.setIsDone2(cursor.getString(12));
+                listItem.setIsDone3(cursor.getString(13));
+                listItem.setIsDone4(cursor.getString(14));
+                listItem.setIsDone5(cursor.getString(15));
+                listItem.setCheckedNumber(cursor.getString(16));
 
 
                 allItems.add(listItem);
@@ -156,6 +186,12 @@ public class DataBase extends SQLiteOpenHelper {
         c.put(KEY_TODO4,listItem.getTodo4());
         c.put(KEY_TODO5,listItem.getTodo5());
         c.put(KEY_DONE, listItem.getIsDone());
+        c.put(KEY_DONE1, listItem.getIsDone1());
+        c.put(KEY_DONE2, listItem.getIsDone2());
+        c.put(KEY_DONE3, listItem.getIsDone3());
+        c.put(KEY_DONE4, listItem.getIsDone4());
+        c.put(KEY_DONE5, listItem.getIsDone5());
+        c.put(KEY_CHECKED_NUMBER, listItem.getCheckedNumber());
 
         return db.update(TABLE_NAME,c,KEY_ID+"=?",new String[]{String.valueOf(listItem.getID())});
     }

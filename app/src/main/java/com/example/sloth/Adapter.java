@@ -34,10 +34,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         String title = items.get(position).gettitle();
         String date = items.get(position).getDate();
         String time = items.get(position).getTime();
+        String checkedNumber = items.get(position).getCheckedNumber();
 
         holder.title.setText(title);
         holder.dateView.setText(date);
         holder.timeView.setText(time);
+        holder.checkedNumber.setText(checkedNumber);
     }
 
     @Override
@@ -46,13 +48,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title,dateView,timeView;
+        TextView title,dateView,timeView, checkedNumber;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             dateView = itemView.findViewById(R.id.dateView);
             timeView = itemView.findViewById(R.id.timeView);
+            checkedNumber = itemView.findViewById(R.id.checkedNumber);
 
             //Infos zu To-Do, auf das man gerade geklickt hat an MyTodo weitergeben
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -28,8 +28,8 @@ public class EditList extends AppCompatActivity {
 
     EditText enterTitle;
     EditText todo, todo1, todo2, todo3, todo4, todo5;
-    CheckBox checkBox;
-    String checkedValue;
+    CheckBox checkBox, checkBox1, checkBox2, checkBox3, checkBox4, checkBox5;
+    String checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5;
     String one;
     Button date;
     Button time;
@@ -69,6 +69,11 @@ public class EditList extends AppCompatActivity {
         todo4 = findViewById(R.id.todoText4);
         todo5 = findViewById(R.id.todoText5);
         checkBox = findViewById(R.id.checkbox);
+        checkBox1 = findViewById(R.id.checkbox1);
+        checkBox2 = findViewById(R.id.checkbox2);
+        checkBox3 = findViewById(R.id.checkbox3);
+        checkBox4 = findViewById(R.id.checkbox4);
+        checkBox5 = findViewById(R.id.checkbox5);
 
         enterTitle.setText(listItem.gettitle());
         date.setText(listItem.getDate());
@@ -90,6 +95,46 @@ public class EditList extends AppCompatActivity {
             checkBox.setChecked(false);
         }
 
+        //Checkbox1
+        checkedValue1 = listItem.getIsDone1();
+        if(checkedValue1.equals(one)) {
+            checkBox1.setChecked(true);
+        } else {
+            checkBox1.setChecked(false);
+        }
+
+        //Checkbox2
+        checkedValue2 = listItem.getIsDone2();
+        if(checkedValue2.equals(one)) {
+            checkBox2.setChecked(true);
+        } else {
+            checkBox2.setChecked(false);
+        }
+
+        //Checkbox3
+        checkedValue3 = listItem.getIsDone3();
+        if(checkedValue3.equals(one)) {
+            checkBox3.setChecked(true);
+        } else {
+            checkBox3.setChecked(false);
+        }
+
+        //Checkbox4
+        checkedValue4 = listItem.getIsDone4();
+        if(checkedValue4.equals(one)) {
+            checkBox4.setChecked(true);
+        } else {
+            checkBox4.setChecked(false);
+        }
+
+        //Checkbox5
+        checkedValue5 = listItem.getIsDone5();
+        if(checkedValue5.equals(one)) {
+            checkBox5.setChecked(true);
+        } else {
+            checkBox5.setChecked(false);
+        }
+
         // CheckBox onchanged Listener
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -98,6 +143,66 @@ public class EditList extends AppCompatActivity {
                     checkedValue = "1";
                 } else {
                     checkedValue = "0";
+                }
+            }
+        });
+
+        // CheckBox1 onchanged Listener
+        checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue1 = "1";
+                } else {
+                    checkedValue1 = "0";
+                }
+            }
+        });
+
+        // CheckBox2 onchanged Listener
+        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue2 = "1";
+                } else {
+                    checkedValue2 = "0";
+                }
+            }
+        });
+
+        // CheckBox3 onchanged Listener
+        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue3 = "1";
+                } else {
+                    checkedValue3 = "0";
+                }
+            }
+        });
+
+        // CheckBox4 onchanged Listener
+        checkBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue4 = "1";
+                } else {
+                    checkedValue4 = "0";
+                }
+            }
+        });
+
+        // CheckBox4 onchanged Listener
+        checkBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue5 = "1";
+                } else {
+                    checkedValue5 = "0";
                 }
             }
         });
@@ -184,6 +289,11 @@ public class EditList extends AppCompatActivity {
             listItem.setTodo4(todo4.getText().toString());
             listItem.setTodo5(todo5.getText().toString());
             listItem.setIsDone(checkedValue);
+            listItem.setIsDone1(checkedValue1);
+            listItem.setIsDone2(checkedValue2);
+            listItem.setIsDone3(checkedValue3);
+            listItem.setIsDone4(checkedValue4);
+            listItem.setIsDone5(checkedValue5);
             int id = db.editList(listItem);
             if(id == listItem.getID()) {
                 Toast.makeText(this, "List updated" , Toast.LENGTH_SHORT).show();

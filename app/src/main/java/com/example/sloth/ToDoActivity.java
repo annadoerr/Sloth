@@ -22,8 +22,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.chip.ChipGroup;
-
 import java.util.Calendar;
 public class ToDoActivity extends AppCompatActivity {
 
@@ -31,8 +29,11 @@ public class ToDoActivity extends AppCompatActivity {
     Button date;
     Button time;
     EditText enterTodo, enterTodo1, enterTodo2, enterTodo3, enterTodo4, enterTodo5;
-    CheckBox checkBox;
-    String checkedValue;
+    CheckBox checkBox, checkBox1, checkBox2, checkBox3, checkBox4, checkBox5;
+    String checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5;
+    String checkedNumber;
+    int count = 0;
+    String one;
     Calendar calendar = Calendar.getInstance();
     String currentDate;
     String currentTime;
@@ -65,6 +66,18 @@ public class ToDoActivity extends AppCompatActivity {
         enterTodo4 = findViewById(R.id.todoText4);
         enterTodo5 = findViewById(R.id.todoText5);
         checkBox = findViewById(R.id.checkbox);
+        checkBox1 = findViewById(R.id.checkbox1);
+        checkBox2 = findViewById(R.id.checkbox2);
+        checkBox3 = findViewById(R.id.checkbox3);
+        checkBox4 = findViewById(R.id.checkbox4);
+        checkBox5 = findViewById(R.id.checkbox5);
+        checkedValue = "0";
+        checkedValue1 = "0";
+        checkedValue2 = "0";
+        checkedValue3 = "0";
+        checkedValue4 = "0";
+        checkedValue5 = "0";
+
 
         // CheckBox onchanged Listener
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -73,11 +86,75 @@ public class ToDoActivity extends AppCompatActivity {
                 if (isChecked) {
                     checkedValue = "1";
                 } else {
-                    checkedValue = "0";
+                   checkedValue = "1";
                 }
             }
         });
 
+        // CheckBox1 onchanged Listener
+        checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue1 = "1";
+                } else {
+                    checkedValue1 = "1";
+                }
+            }
+        });
+
+        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue2 = "1";
+                } else {
+                    checkedValue2 = "1";
+                }
+            }
+        });
+
+        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue3 = "1";
+                } else {
+                    checkedValue3 = "1";
+                }
+            }
+        });
+
+        checkBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    checkedValue4 = "1";
+                } else {
+                    checkedValue4 = "1";
+                }
+            }
+        });
+
+        checkBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    checkedValue5 = "1";
+                } else {
+                    checkedValue5 = "0";
+                }
+            }
+        });
+
+        //Count number of checked Checkboxes
+        one = "1";
+        if(checkedValue.equals(one) || checkedValue1.equals(one) || checkedValue2.equals(one) || checkedValue3.equals(one)
+        || checkedValue4.equals(one)) {
+            count++;
+        }
+        checkedNumber = String.valueOf(count);
+        Log.d("count2", "countInt" +" und " + count);
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -155,8 +232,9 @@ public class ToDoActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.save) {
             listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
                     enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),
-                    enterTodo5.getText().toString(), checkedValue);
+                    enterTodo5.getText().toString(), checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5, checkedNumber);
 
+            Log.d("count", "checkBoxCount" + checkedNumber);
             db = new DataBase(this);
             db.addItem(listItem);
             Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();

@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +21,8 @@ public class MyTodo extends AppCompatActivity {
     DataBase db;
     ListItem listItem;
     TextView todo, todo1, todo2, todo3, todo4, todo5;
-    CheckBox checkBox;
-    String checkedValue;
+    CheckBox checkBox, checkBox1, checkBox2, checkBox3, checkBox4, checkBox5;
+    String checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5;
     String one;
     Calendar calendar;
     String currentDate;
@@ -54,6 +53,12 @@ public class MyTodo extends AppCompatActivity {
         todo4 = findViewById(R.id.todoText4);
         todo5 = findViewById(R.id.todoText5);
         checkBox = findViewById(R.id.checkbox);
+        checkBox1 = findViewById(R.id.checkbox1);
+        checkBox2 = findViewById(R.id.checkbox2);
+        checkBox3 = findViewById(R.id.checkbox3);
+        checkBox4 = findViewById(R.id.checkbox4);
+        checkBox5 = findViewById(R.id.checkbox5);
+
 
         //ID einer Liste von Adapter bekommen
         Intent intent = getIntent();
@@ -69,15 +74,54 @@ public class MyTodo extends AppCompatActivity {
         todo3.setText(listItem.getTodo3());
         todo4.setText(listItem.getTodo4());
         todo5.setText(listItem.getTodo5());
-        //Set CheckBox to checked if it value was saved as 1
-        checkedValue = listItem.getIsDone();
+        //Set CheckBox to checked if value was saved as 1
         one = "1";
-        Log.d("Value", "checked?" +" + "+checkedValue);
-
+        //Checkbox
+        checkedValue = listItem.getIsDone();
         if(checkedValue.equals(one)) {
             checkBox.setChecked(true);
         } else {
             checkBox.setChecked(false);
+        }
+
+        //Checkbox1
+        checkedValue1 = listItem.getIsDone1();
+        if(checkedValue1.equals(one)) {
+            checkBox1.setChecked(true);
+        } else {
+            checkBox1.setChecked(false);
+        }
+
+        //Checkbox2
+        checkedValue2 = listItem.getIsDone2();
+        if(checkedValue2.equals(one)) {
+            checkBox2.setChecked(true);
+        } else {
+            checkBox2.setChecked(false);
+        }
+
+        //Checkbox3
+        checkedValue3 = listItem.getIsDone3();
+        if(checkedValue3.equals(one)) {
+            checkBox3.setChecked(true);
+        } else {
+            checkBox3.setChecked(false);
+        }
+
+        //Checkbox4
+        checkedValue4 = listItem.getIsDone4();
+        if(checkedValue4.equals(one)) {
+            checkBox4.setChecked(true);
+        } else {
+            checkBox4.setChecked(false);
+        }
+
+        //Checkbox5
+        checkedValue5 = listItem.getIsDone5();
+        if(checkedValue5.equals(one)) {
+            checkBox5.setChecked(true);
+        } else {
+            checkBox5.setChecked(false);
         }
 
         //Feedback Screen aufrufen, wenn Deadline überschritten wurde
