@@ -31,6 +31,8 @@ public class EditList extends AppCompatActivity {
     CheckBox checkBox, checkBox1, checkBox2, checkBox3, checkBox4, checkBox5;
     String checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5;
     String one;
+    String checkedNumber;
+    int count = 0;
     Button date;
     Button time;
     Calendar calendar = Calendar.getInstance();
@@ -269,6 +271,26 @@ public class EditList extends AppCompatActivity {
 
     }
 
+    public void countChecks() {
+        //Count number of checked Checkboxes
+        one = "1";
+        if(checkedValue.equals(one)) {
+            count++;
+        } if (checkedValue1.equals(one)) {
+            count ++;
+        } if (checkedValue2.equals(one)) {
+            count ++;
+        } if (checkedValue3.equals(one)) {
+            count ++;
+        } if (checkedValue4.equals(one)) {
+            count ++;
+        } if (checkedValue5.equals(one)) {
+            count ++;
+        }
+        checkedNumber = String.valueOf(count);
+        Log.d("count2", "countInt" +" und " + count);
+    }
+
     //Adds save option for note
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -278,6 +300,7 @@ public class EditList extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        countChecks();
         if(item.getItemId() == R.id.save) {
             listItem.setTitle(enterTitle.getText().toString());
             listItem.setDate(date.getText().toString());
@@ -294,6 +317,7 @@ public class EditList extends AppCompatActivity {
             listItem.setIsDone3(checkedValue3);
             listItem.setIsDone4(checkedValue4);
             listItem.setIsDone5(checkedValue5);
+            listItem.setCheckedNumber(checkedNumber);
             int id = db.editList(listItem);
             if(id == listItem.getID()) {
                 Toast.makeText(this, "List updated" , Toast.LENGTH_SHORT).show();

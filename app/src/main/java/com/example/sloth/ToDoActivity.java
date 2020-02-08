@@ -147,15 +147,6 @@ public class ToDoActivity extends AppCompatActivity {
             }
         });
 
-        //Count number of checked Checkboxes
-        one = "1";
-        if(checkedValue.equals(one) || checkedValue1.equals(one) || checkedValue2.equals(one) || checkedValue3.equals(one)
-        || checkedValue4.equals(one)) {
-            count++;
-        }
-        checkedNumber = String.valueOf(count);
-        Log.d("count2", "countInt" +" und " + count);
-
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -219,6 +210,26 @@ public class ToDoActivity extends AppCompatActivity {
 
     }
 
+    public void countChecks() {
+        //Count number of checked Checkboxes
+        one = "1";
+        if(checkedValue.equals(one)) {
+            count++;
+        } if (checkedValue1.equals(one)) {
+            count ++;
+        } if (checkedValue2.equals(one)) {
+            count ++;
+        } if (checkedValue3.equals(one)) {
+            count ++;
+        } if (checkedValue4.equals(one)) {
+            count ++;
+        } if (checkedValue5.equals(one)) {
+            count ++;
+        }
+        checkedNumber = String.valueOf(count);
+        Log.d("count2", "countInt" +" und " + count);
+    }
+
 
     //Adds save option for note
     @Override
@@ -230,10 +241,10 @@ public class ToDoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.save) {
+            countChecks();
             listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
                     enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),
                     enterTodo5.getText().toString(), checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5, checkedNumber);
-
             Log.d("count", "checkBoxCount" + checkedNumber);
             db = new DataBase(this);
             db.addItem(listItem);
