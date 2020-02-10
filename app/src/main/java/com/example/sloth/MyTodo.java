@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class MyTodo extends AppCompatActivity {
 
@@ -25,12 +26,12 @@ public class MyTodo extends AppCompatActivity {
     String checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5;
     String one;
     Calendar calendar;
-    String currentDate;
+    String todaysDate;
     String currentTime;
     String currentDateTime;
     String setTime;
     String setDate;
-    String dateTime;
+    String setDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class MyTodo extends AppCompatActivity {
         one = "1";
         //Checkbox
         checkedValue = listItem.getIsDone();
-        if(checkedValue.equals(one)) {
+        if (checkedValue.equals(one)) {
             checkBox.setChecked(true);
         } else {
             checkBox.setChecked(false);
@@ -86,7 +87,7 @@ public class MyTodo extends AppCompatActivity {
 
         //Checkbox1
         checkedValue1 = listItem.getIsDone1();
-        if(checkedValue1.equals(one)) {
+        if (checkedValue1.equals(one)) {
             checkBox1.setChecked(true);
         } else {
             checkBox1.setChecked(false);
@@ -94,7 +95,7 @@ public class MyTodo extends AppCompatActivity {
 
         //Checkbox2
         checkedValue2 = listItem.getIsDone2();
-        if(checkedValue2.equals(one)) {
+        if (checkedValue2.equals(one)) {
             checkBox2.setChecked(true);
         } else {
             checkBox2.setChecked(false);
@@ -102,7 +103,7 @@ public class MyTodo extends AppCompatActivity {
 
         //Checkbox3
         checkedValue3 = listItem.getIsDone3();
-        if(checkedValue3.equals(one)) {
+        if (checkedValue3.equals(one)) {
             checkBox3.setChecked(true);
         } else {
             checkBox3.setChecked(false);
@@ -110,7 +111,7 @@ public class MyTodo extends AppCompatActivity {
 
         //Checkbox4
         checkedValue4 = listItem.getIsDone4();
-        if(checkedValue4.equals(one)) {
+        if (checkedValue4.equals(one)) {
             checkBox4.setChecked(true);
         } else {
             checkBox4.setChecked(false);
@@ -118,7 +119,7 @@ public class MyTodo extends AppCompatActivity {
 
         //Checkbox5
         checkedValue5 = listItem.getIsDone5();
-        if(checkedValue5.equals(one)) {
+        if (checkedValue5.equals(one)) {
             checkBox5.setChecked(true);
         } else {
             checkBox5.setChecked(false);
@@ -128,36 +129,36 @@ public class MyTodo extends AppCompatActivity {
         //Preparing set Date and current Date
         setTime = listItem.getTime();
         setDate = listItem.getDate();
-        dateTime =setDate+" "+setTime;
+        setDateTime = setDate +" "+ setTime;
+        Log.d("setDateTime", setDateTime);
 
         //Get Todays Date and Time
-        calendar = Calendar.getInstance();
-        currentDate = calendar.get(Calendar.DAY_OF_MONTH)+"."+(calendar.get(Calendar.MONTH)+1)+"."+calendar.get(Calendar.YEAR);
-        currentTime = zero(calendar.get(Calendar.HOUR))+":"+zero(calendar.get(Calendar.MINUTE));
-        currentDateTime = currentDate+" "+currentTime;
-
-        Log.d("calendar", "Date and Time " + currentDate + "and" + currentTime);
-        Log.d("calendar2", "Date" + setDate);
-        Log.d("calendar1", "Time" + setTime);
-        Log.d("calendar3", "dateTime" + dateTime);
-        Log.d("calendar4","currentDateTime" + currentDateTime);
+        Calendar calendar1 = Calendar.getInstance();
+        SimpleDateFormat formatter1 = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        String currentDateTime = formatter1.format(calendar1.getTime());
+        Log.d("currentDate", "Date" + currentDateTime);
 
         try {
             //Parsing dates for comparing
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            Date date1 = sdf.parse(setDate);
-            Date date2 = sdf.parse(currentDate);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+            Date date1 = sdf.parse(setDateTime);
+            Date date2 = sdf.parse(currentDateTime);
 
             //Comparing the dates
-            if(date1.before(date2)){
+            if (date1.before(date2)) {
                 Log.e("app", "Date1 is before Date2");
             }
 
-            if(date1.after(date2)){
-                Log.e("app", "Date1 is after Date2");
-                Intent i = new Intent(this, FeedbackOne.class);
-                i.putExtra("ID",listItem.getID());
-                startActivity(i);
+            if (date1.after(date2)) {
+                if (checkBox.isChecked() && checkBox1.isChecked() && checkBox2.isChecked() &&
+                        checkBox3.isChecked() && checkBox4.isChecked() && checkBox5.isChecked()) {
+                    Log.e("app", "All Checkboxes were checked before Deadline");
+                } else {
+                    Log.e("app", "Date1 is after Date2");
+                    Intent i = new Intent(this, FeedbackOne.class);
+                    i.putExtra("ID", listItem.getID());
+                    startActivity(i);
+                }
             }
 
         } catch (Exception e) {
@@ -165,13 +166,6 @@ public class MyTodo extends AppCompatActivity {
         }
     }
 
-    private String zero(int i) {
-        if(i<10) {
-            return "0" + i;
-        }else{
-            return String.valueOf(i);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -181,19 +175,19 @@ public class MyTodo extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.edit) {
-           //Nutzer zur EditActivity schicken
-            Toast.makeText(this, "Edit",Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.edit) {
+            //Nutzer zur EditActivity schicken
+            Toast.makeText(this, "Edit", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, EditList.class);
-            intent.putExtra("ID",listItem.getID());
+            intent.putExtra("ID", listItem.getID());
             startActivity(intent);
 
         }
-        if(item.getItemId() == R.id.delete) {
+        if (item.getItemId() == R.id.delete) {
 
             db.deleteList(listItem.getID());
-            Toast.makeText(getApplicationContext(),getString(R.string.deleted) , Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            Toast.makeText(getApplicationContext(), getString(R.string.deleted), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".FeedbackOne"></activity>
+        <activity android:name=".FeedbackOneCheckbox"></activity>
+        <activity android:name=".FeedbackAllCheckboxes" />
+        <activity android:name=".FeedbackOne" />
         <activity android:name=".EditList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

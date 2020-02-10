@@ -39,17 +39,14 @@ public class MainActivity extends AppCompatActivity {
         items = db.getallItems();
         recyclerView = findViewById(R.id.allLists);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Adapter(this,items);
+        adapter = new Adapter(this, items);
         recyclerView.setAdapter(adapter);
     }
 
-    public void displayList() {
-
-    }
 
     //What happens when "add" button on MainActivity gets clicked
     public void addListClicked(View v) {
-        Intent intent = new Intent (this, ToDoActivity.class);
+        Intent intent = new Intent(this, ToDoActivity.class);
         startActivity(intent);
 
     }

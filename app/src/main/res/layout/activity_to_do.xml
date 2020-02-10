@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,58 +12,65 @@
         layout="@layout/app_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
+
+    <EditText
+        android:id="@+id/enterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/app_bar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_corners_white"
+        android:ems="10"
+        android:hint="@string/entertitle"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/blackText"
+        android:textColorHint="@color/blackText" />
 
     <RelativeLayout
-        android:id="@+id/relativelayout"
-        android:layout_width="match_parent"
+        android:id="@+id/relativelayoutDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@+id/enterTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners_blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/enterTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginEnd="25dp"
-            android:background="@drawable/rounded_corners_white"
-            android:ems="10"
-            android:hint="@string/entertitle"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        app:layout_constraintTop_toBottomOf="@+id/enterTitle">
 
         <ImageView
             android:id="@+id/calendar"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_alignStart="@+id/date"
-            android:layout_alignTop="@+id/date"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="0dp"
+            android:background="@color/colorPrimary"
             android:contentDescription="@string/Date"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/kalender" />
 
         <Button
             android:id="@+id/date"
-            android:layout_width="170dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_below="@+id/enterTitle"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="21dp"
-            android:background="@drawable/rounded_corners_blue"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/calendar"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/Date"
             android:padding="10dp"
@@ -72,28 +79,45 @@
             android:textColor="@color/whiteText"
             android:textColorHint="@color/whiteText" />
 
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativelayoutTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enterTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_corners_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterTitle">
+
         <ImageView
             android:id="@+id/clock"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignStart="@+id/time"
-            android:layout_alignTop="@+id/time"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:contentDescription="@string/Time"
-            android:scaleType="fitXY"
+            android:layout_marginBottom="0dp"
+            android:background="@color/colorPrimary"
+            android:contentDescription="@string/Date"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/uhr" />
 
         <Button
             android:id="@+id/time"
-            android:layout_width="170dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_below="@+id/enterTitle"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="25dp"
-            android:background="@drawable/rounded_corners_blue"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/clock"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/Zeit"
             android:padding="10dp"
@@ -108,15 +132,17 @@
         android:id="@+id/checkboxLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="225dp"
-        android:layout_marginEnd="25dp"
+        android:layout_below="@+id/relativelayoutDate"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/background_list_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativelayout"
         app:layout_constraintVertical_bias="1.0"
         tools:context=".ToDoItem">
 
@@ -291,4 +317,4 @@
 
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

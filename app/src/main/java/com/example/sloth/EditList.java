@@ -89,9 +89,9 @@ public class EditList extends AppCompatActivity {
         //Set CheckBox to checked if value was saved as 1
         checkedValue = listItem.getIsDone();
         one = "1";
-        Log.d("Value", "checked?" +" + "+checkedValue);
+        Log.d("Value", "checked?" + " + " + checkedValue);
 
-        if(checkedValue.equals(one)) {
+        if (checkedValue.equals(one)) {
             checkBox.setChecked(true);
         } else {
             checkBox.setChecked(false);
@@ -99,7 +99,7 @@ public class EditList extends AppCompatActivity {
 
         //Checkbox1
         checkedValue1 = listItem.getIsDone1();
-        if(checkedValue1.equals(one)) {
+        if (checkedValue1.equals(one)) {
             checkBox1.setChecked(true);
         } else {
             checkBox1.setChecked(false);
@@ -107,7 +107,7 @@ public class EditList extends AppCompatActivity {
 
         //Checkbox2
         checkedValue2 = listItem.getIsDone2();
-        if(checkedValue2.equals(one)) {
+        if (checkedValue2.equals(one)) {
             checkBox2.setChecked(true);
         } else {
             checkBox2.setChecked(false);
@@ -115,7 +115,7 @@ public class EditList extends AppCompatActivity {
 
         //Checkbox3
         checkedValue3 = listItem.getIsDone3();
-        if(checkedValue3.equals(one)) {
+        if (checkedValue3.equals(one)) {
             checkBox3.setChecked(true);
         } else {
             checkBox3.setChecked(false);
@@ -123,7 +123,7 @@ public class EditList extends AppCompatActivity {
 
         //Checkbox4
         checkedValue4 = listItem.getIsDone4();
-        if(checkedValue4.equals(one)) {
+        if (checkedValue4.equals(one)) {
             checkBox4.setChecked(true);
         } else {
             checkBox4.setChecked(false);
@@ -131,7 +131,7 @@ public class EditList extends AppCompatActivity {
 
         //Checkbox5
         checkedValue5 = listItem.getIsDone5();
-        if(checkedValue5.equals(one)) {
+        if (checkedValue5.equals(one)) {
             checkBox5.setChecked(true);
         } else {
             checkBox5.setChecked(false);
@@ -143,6 +143,7 @@ public class EditList extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue = "1";
+                    checkboxFeedback();
                 } else {
                     checkedValue = "0";
                 }
@@ -155,6 +156,7 @@ public class EditList extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue1 = "1";
+                    checkboxFeedback();
                 } else {
                     checkedValue1 = "0";
                 }
@@ -167,6 +169,7 @@ public class EditList extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue2 = "1";
+                    checkboxFeedback();
                 } else {
                     checkedValue2 = "0";
                 }
@@ -179,6 +182,7 @@ public class EditList extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue3 = "1";
+                    checkboxFeedback();
                 } else {
                     checkedValue3 = "0";
                 }
@@ -191,18 +195,21 @@ public class EditList extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue4 = "1";
+                    checkboxFeedback();
                 } else {
                     checkedValue4 = "0";
                 }
             }
         });
 
-        // CheckBox4 onchanged Listener
+
+        // CheckBox5 onchanged Listener
         checkBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue5 = "1";
+                    checkboxFeedback();
                 } else {
                     checkedValue5 = "0";
                 }
@@ -217,7 +224,7 @@ public class EditList extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() != 0) {
+                if (s.length() != 0) {
                     getSupportActionBar().setTitle(s);
                 }
             }
@@ -239,7 +246,7 @@ public class EditList extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                        setTime.setText(hourOfDay + ":" + minute);
+                        setTime.setText(String.format("%02d:%02d", hourOfDay, minute));
 
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(EditList.this));
@@ -262,33 +269,47 @@ public class EditList extends AppCompatActivity {
                         setDate.setText(dayOfMonth + "." + (month + 1) + "." + year);
 
                     }
-                },calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
+                }, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
 
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
+    }
 
+    public void checkboxFeedback() {
+        final Intent feedback = new Intent(this, FeedbackOneCheckbox.class);
+        final Intent feedbackAll = new Intent(this, FeedbackAllCheckboxes.class);
+        if (checkBox.isChecked() && checkBox1.isChecked() && checkBox2.isChecked() &&
+                checkBox3.isChecked() && checkBox4.isChecked() && checkBox5.isChecked()) {
+            startActivity(feedbackAll);
+        } else {
+            startActivity(feedback);
+        }
     }
 
     public void countChecks() {
         //Count number of checked Checkboxes
         one = "1";
-        if(checkedValue.equals(one)) {
+        if (checkedValue.equals(one)) {
             count++;
-        } if (checkedValue1.equals(one)) {
-            count ++;
-        } if (checkedValue2.equals(one)) {
-            count ++;
-        } if (checkedValue3.equals(one)) {
-            count ++;
-        } if (checkedValue4.equals(one)) {
-            count ++;
-        } if (checkedValue5.equals(one)) {
-            count ++;
+        }
+        if (checkedValue1.equals(one)) {
+            count++;
+        }
+        if (checkedValue2.equals(one)) {
+            count++;
+        }
+        if (checkedValue3.equals(one)) {
+            count++;
+        }
+        if (checkedValue4.equals(one)) {
+            count++;
+        }
+        if (checkedValue5.equals(one)) {
+            count++;
         }
         checkedNumber = String.valueOf(count);
-        Log.d("count2", "countInt" +" und " + count);
     }
 
     //Adds save option for note
@@ -301,7 +322,7 @@ public class EditList extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         countChecks();
-        if(item.getItemId() == R.id.save) {
+        if (item.getItemId() == R.id.save) {
             listItem.setTitle(enterTitle.getText().toString());
             listItem.setDate(date.getText().toString());
             listItem.setTime(time.getText().toString());
@@ -319,13 +340,13 @@ public class EditList extends AppCompatActivity {
             listItem.setIsDone5(checkedValue5);
             listItem.setCheckedNumber(checkedNumber);
             int id = db.editList(listItem);
-            if(id == listItem.getID()) {
-                Toast.makeText(this, "List updated" , Toast.LENGTH_SHORT).show();
+            if (id == listItem.getID()) {
+                Toast.makeText(this, "List updated", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             }
 
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("ID", listItem.getID());
             startActivity(intent);
         }

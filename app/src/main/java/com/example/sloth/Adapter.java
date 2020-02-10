@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     LayoutInflater inflater;
-    List <ListItem> items;
+    List<ListItem> items;
 
     Adapter(Context context, List<ListItem> items) {
         this.inflater = LayoutInflater.from(context);
@@ -25,7 +25,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.activity_list_item,parent,false);
+        View view = inflater.inflate(R.layout.activity_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,7 +48,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title,dateView,timeView, checkedNumber;
+        TextView title, dateView, timeView, checkedNumber;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,8 +61,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(),MyTodo.class);
-                    intent.putExtra("ID",items.get(getAdapterPosition()).getID());
+                    Intent intent = new Intent(v.getContext(), MyTodo.class);
+                    intent.putExtra("ID", items.get(getAdapterPosition()).getID());
                     v.getContext().startActivity(intent);
                 }
             });

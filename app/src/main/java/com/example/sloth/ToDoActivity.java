@@ -22,7 +22,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
 public class ToDoActivity extends AppCompatActivity {
 
     EditText enterTitle;
@@ -78,15 +81,15 @@ public class ToDoActivity extends AppCompatActivity {
         checkedValue4 = "0";
         checkedValue5 = "0";
 
-
-        // CheckBox onchanged Listener
+        // CheckBox onchanged Listener and Open Feedback if a checkbox is checked
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue = "1";
+                    checkboxFeedback();
                 } else {
-                   checkedValue = "1";
+                    checkedValue = "0";
                 }
             }
         });
@@ -97,8 +100,9 @@ public class ToDoActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue1 = "1";
+                    checkboxFeedback();
                 } else {
-                    checkedValue1 = "1";
+                    checkedValue1 = "0";
                 }
             }
         });
@@ -108,9 +112,11 @@ public class ToDoActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue2 = "1";
+                    checkboxFeedback();
                 } else {
-                    checkedValue2 = "1";
+                    checkedValue2 = "0";
                 }
+
             }
         });
 
@@ -119,8 +125,9 @@ public class ToDoActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue3 = "1";
+                    checkboxFeedback();
                 } else {
-                    checkedValue3 = "1";
+                    checkedValue3 = "0";
                 }
             }
         });
@@ -130,8 +137,9 @@ public class ToDoActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     checkedValue4 = "1";
+                    checkboxFeedback();
                 } else {
-                    checkedValue4 = "1";
+                    checkedValue4 = "0";
                 }
             }
         });
@@ -139,13 +147,15 @@ public class ToDoActivity extends AppCompatActivity {
         checkBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     checkedValue5 = "1";
+                    checkboxFeedback();
                 } else {
                     checkedValue5 = "0";
                 }
             }
         });
+
 
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -155,9 +165,9 @@ public class ToDoActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(s.length() != 0) {
-                        getSupportActionBar().setTitle(s);
-                    }
+                if (s.length() != 0) {
+                    getSupportActionBar().setTitle(s);
+                }
             }
 
             @Override
@@ -165,6 +175,7 @@ public class ToDoActivity extends AppCompatActivity {
 
             }
         });
+
 
         //Time Picker
         final Button setTime = findViewById(R.id.time);
@@ -177,7 +188,8 @@ public class ToDoActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                        setTime.setText(hourOfDay + ":" + minute);
+                        setTime.setText(String.format("%02d:%02d", hourOfDay, minute));
+                      /*  setTime.setText(hourOfDay + ":" + minute);*/
 
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(ToDoActivity.this));
@@ -198,10 +210,10 @@ public class ToDoActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        setDate.setText(dayOfMonth+"."+(month + 1)+"."+year);
+                        setDate.setText(dayOfMonth + "." + (month + 1) + "." + year);
 
                     }
-                },calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
+                }, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
 
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
@@ -210,24 +222,39 @@ public class ToDoActivity extends AppCompatActivity {
 
     }
 
+    public void checkboxFeedback() {
+        final Intent feedback = new Intent(this, FeedbackOneCheckbox.class);
+        final Intent feedbackAll = new Intent(this, FeedbackAllCheckboxes.class);
+        if (checkBox.isChecked() && checkBox1.isChecked() && checkBox2.isChecked() &&
+                checkBox3.isChecked() && checkBox4.isChecked() && checkBox5.isChecked()) {
+            startActivity(feedbackAll);
+        } else {
+            startActivity(feedback);
+        }
+    }
+
     public void countChecks() {
         //Count number of checked Checkboxes
         one = "1";
-        if(checkedValue.equals(one)) {
+        if (checkedValue.equals(one)) {
             count++;
-        } if (checkedValue1.equals(one)) {
-            count ++;
-        } if (checkedValue2.equals(one)) {
-            count ++;
-        } if (checkedValue3.equals(one)) {
-            count ++;
-        } if (checkedValue4.equals(one)) {
-            count ++;
-        } if (checkedValue5.equals(one)) {
-            count ++;
+        }
+        if (checkedValue1.equals(one)) {
+            count++;
+        }
+        if (checkedValue2.equals(one)) {
+            count++;
+        }
+        if (checkedValue3.equals(one)) {
+            count++;
+        }
+        if (checkedValue4.equals(one)) {
+            count++;
+        }
+        if (checkedValue5.equals(one)) {
+            count++;
         }
         checkedNumber = String.valueOf(count);
-        Log.d("count2", "countInt" +" und " + count);
     }
 
 
@@ -240,7 +267,7 @@ public class ToDoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.save) {
+        if (item.getItemId() == R.id.save) {
             countChecks();
             listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
                     enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),

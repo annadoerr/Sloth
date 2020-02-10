@@ -25,4 +25,9 @@
     <string name="faultier_tot">Du hast nicht alle Punkte bis zur  Deadline erledigt. Dein Faultier ist  leider ohne genügend Blätter verhungert… Vielleicht motiviert dich das beim  nächsten Mal  nicht alles  aufzuschieben!</string>
     <string name="backToList">Zurück zur Liste</string>
     <string name="total">/6</string>
+    <string name="allCheckboxes">slothSleep</string>
+    <string name="sleep">ZZZ</string>
+    <string name="allDone">Alles erledigt! Fauli das Faultier wird erstmal ein  Verdauungsschläfchen halten.  Das hast du dir jetzt auch verdient!</string>
+    <string name="oneLeaf">Du hast Fauli dem Faultier ein  Blatt gefüttert.  Weiter so!</string>
+    <string name="leaf">leaf</string>
 </resources>
