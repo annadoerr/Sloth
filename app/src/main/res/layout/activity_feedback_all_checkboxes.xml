@@ -50,7 +50,7 @@
         android:layout_marginTop="75dp"
         android:layout_marginEnd="120dp"
         android:contentDescription="@string/allCheckboxes"
-        app:srcCompat="@drawable/faultier_schlafend" />
+        app:srcCompat="@drawable/ic_faultierschlafend" />
 
     <TextView
         android:id="@+id/allDone"

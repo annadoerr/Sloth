@@ -24,7 +24,7 @@ public class FeedbackOne extends AppCompatActivity {
     }
 
     public void backToMyTodo(View v) {
-       Intent intent = new Intent(this, MyTodo.class);
+       Intent intent = new Intent(this, MainActivity.class);
        intent.putExtra("ID", listItem.getID());
        startActivity(intent);
     }

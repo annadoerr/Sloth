@@ -30,4 +30,5 @@
     <string name="allDone">Alles erledigt! Fauli das Faultier wird erstmal ein  Verdauungsschläfchen halten.  Das hast du dir jetzt auch verdient!</string>
     <string name="oneLeaf">Du hast Fauli dem Faultier ein  Blatt gefüttert.  Weiter so!</string>
     <string name="leaf">leaf</string>
+    <string name="plusOne">+1</string>
 </resources>

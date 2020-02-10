@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/slothFed"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -17,7 +17,7 @@
         android:layout_marginTop="75dp"
         android:layout_marginEnd="120dp"
         android:contentDescription="@string/allCheckboxes"
-        app:srcCompat="@mipmap/ic_launcher_foreground" />
+        app:srcCompat="@drawable/ic_faultier" />
 
     <TextView
         android:id="@+id/allDone"
@@ -27,21 +27,35 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:padding="30dp"
-        android:text="@string/oneLeaf" />
+        android:text="@string/oneLeaf"
+        android:textColor="@color/blackText" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/allDone"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/plusOne"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/allDone"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="231dp"
+        android:layout_toEndOf="@+id/textView"
         android:contentDescription="@string/leaf"
-        app:srcCompat="@drawable/blatt_feedback" />
+        app:srcCompat="@drawable/ic_blattfeedback" />
 </RelativeLayout>
