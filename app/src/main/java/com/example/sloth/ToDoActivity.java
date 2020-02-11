@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -279,14 +278,11 @@ public class ToDoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
             if (item.getItemId() == R.id.save) {
                 //Check if Todos, Date and Time were filled out
-                if(TextUtils.isEmpty(date.getText().toString()) || TextUtils.isEmpty(time.getText().toString()) ||TextUtils.isEmpty(enterTodo.getText().toString()) || TextUtils.isEmpty(enterTodo1.getText().toString()) ||
+                if(TextUtils.isEmpty(date.getText().toString()) || TextUtils.isEmpty(time.getText().toString()) || TextUtils.isEmpty(enterTodo.getText().toString()) || TextUtils.isEmpty(enterTodo1.getText().toString()) ||
                         TextUtils.isEmpty(enterTodo2.getText().toString()) || TextUtils.isEmpty(enterTodo3.getText().toString()) ||
                         TextUtils.isEmpty(enterTodo4.getText().toString()) || TextUtils.isEmpty(enterTodo5.getText().toString())) {
                     //If not all Todos were filled out, return the following text
-                    Toast toast = Toast.makeText(this, getString(R.string.fillOut), Toast.LENGTH_SHORT);
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.background_toast);
-                    toast.show();
+                    Toast.makeText(this, getString(R.string.fillOut), Toast.LENGTH_SHORT).show();
                 } else{
                     //If all Todos were filled out proceed to save infos
                     countChecks();
@@ -296,10 +292,7 @@ public class ToDoActivity extends AppCompatActivity {
                     Log.d("count", "checkBoxCount" + checkedNumber);
                     db = new DataBase(this);
                     db.addItem(listItem);
-                    Toast toast = Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT);
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.background_toast);
-                    toast.show();
+                    Toast.makeText(this, getString(R.string.save), Toast.LENGTH_SHORT).show();
                     gotToMain();
                 }
             }

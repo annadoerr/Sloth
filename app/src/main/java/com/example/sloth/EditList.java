@@ -62,6 +62,8 @@ public class EditList extends AppCompatActivity {
 
         //Gets Title and ToDos
         enterTitle = findViewById(R.id.enterTitle);
+        date = findViewById(R.id.date);
+        time = findViewById(R.id.time);
         todo = findViewById(R.id.todoText);
         todo1 = findViewById(R.id.todoText1);
         todo2 = findViewById(R.id.todoText2);
@@ -347,11 +349,7 @@ public class EditList extends AppCompatActivity {
                 listItem.setCheckedNumber(checkedNumber);
 
                 db.editList(listItem);
-                Toast toast = Toast.makeText(this, getString(R.string.updated), Toast.LENGTH_SHORT);
-                View toastView = toast.getView();
-                toastView.setBackgroundResource(R.drawable.background_toast);
-                toast.show();
-
+                Toast.makeText(this, getString(R.string.updated), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("ID", listItem.getID());
