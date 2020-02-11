@@ -51,7 +51,7 @@ public class EditList extends AppCompatActivity {
         listItem = db.getItem(id);
 
         //Adds AppCompbat Toolbar to Activity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         //Changes AppBar Title
         getSupportActionBar().setTitle(listItem.gettitle());
@@ -62,8 +62,6 @@ public class EditList extends AppCompatActivity {
 
         //Gets Title and ToDos
         enterTitle = findViewById(R.id.enterTitle);
-        date = findViewById(R.id.date);
-        time = findViewById(R.id.time);
         todo = findViewById(R.id.todoText);
         todo1 = findViewById(R.id.todoText1);
         todo2 = findViewById(R.id.todoText2);
