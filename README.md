@@ -1,5 +1,6 @@
 # Sloth
-An app to help you stop procrastinating.
+An app to help you stop procrastinating. Create lists and add a deadline for each list.<br>
+Constant feedback will help you stay on top of your tasks.
 
 # Tools
 This app is being build in Android Studio with Java as a programming language.
