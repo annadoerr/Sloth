@@ -48,7 +48,6 @@
             android:textColor="@color/whiteText" />
 
         <ImageView
-            android:id="@+id/calendarView"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_alignParentTop="true"
@@ -75,7 +74,6 @@
             app:srcCompat="@drawable/ic_clock" />
 
         <ImageView
-            android:id="@+id/arrow"
             android:layout_width="75dp"
             android:layout_height="50dp"
             android:layout_below="@+id/deadline"
@@ -83,7 +81,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/pfeil"
-            app:srcCompat="@drawable/ic_pfeil" />
+            app:srcCompat="@drawable/ic_arrow" />
 
         <TextView
             android:id="@+id/title"
@@ -120,7 +118,6 @@
             android:textColor="@color/blackText" />
 
         <TextView
-            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/blaetter"

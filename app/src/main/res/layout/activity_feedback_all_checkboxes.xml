@@ -6,78 +6,106 @@
     android:layout_height="match_parent"
     tools:context=".FeedbackAllCheckboxes">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:contentDescription="@string/allCheckboxes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_sleepingsloth" />
+
+    <TextView
+        android:id="@+id/allDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/allDone"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/blackText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/allDone"
+        app:layout_constraintVertical_bias="0.05">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_toEndOf="@+id/z2"
-                android:contentDescription="@string/allCheckboxes"
-                app:srcCompat="@drawable/ic_faultierschlafend" />
-
-            <TextView
-                android:id="@+id/z"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="45dp"
-                android:text="@string/sleep"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-            <TextView
-                android:id="@+id/z1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="63dp"
-                android:layout_marginTop="75dp"
-                android:text="@string/sleep"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-            <TextView
-                android:id="@+id/z2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="91dp"
-                android:layout_marginTop="103dp"
-                android:text="@string/sleep"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/allDone"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/leaf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="63dp"
-            android:layout_marginEnd="0dp"
-            android:padding="30dp"
-            android:text="@string/allDone" />
+            android:layout_weight="1"
+            android:contentDescription="@string/leaf"
+            app:srcCompat="@drawable/ic_leaf" />
 
-        <Button
-            android:id="@+id/backtoList1"
-            android:layout_width="200dp"
+        <ImageView
+            android:id="@+id/leaf1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners"
-            android:onClick="backToEdit"
-            android:text="@string/backToList"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/whiteText" />
+            android:layout_weight="1"
+            android:contentDescription="@string/leaf"
+            app:srcCompat="@drawable/ic_leaf" />
+
+        <ImageView
+            android:id="@+id/leaf2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/leaf"
+            app:srcCompat="@drawable/ic_leaf" />
+
+        <ImageView
+            android:id="@+id/leaf3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/leaf"
+            app:srcCompat="@drawable/ic_leaf" />
+
+        <ImageView
+            android:id="@+id/leaf4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/leaf"
+            app:srcCompat="@drawable/ic_leaf" />
+
+        <ImageView
+            android:id="@+id/leaf5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/leaf"
+            app:srcCompat="@drawable/ic_leaf" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/rounded_corners"
+        android:onClick="backToEdit"
+        android:text="@string/backToList"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/whiteText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

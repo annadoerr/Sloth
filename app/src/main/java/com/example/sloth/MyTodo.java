@@ -183,10 +183,7 @@ public class MyTodo extends AppCompatActivity {
             db.deleteList(listItem.getID());
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.deleted), Toast.LENGTH_SHORT);
-            View toastView = toast.getView();
-            toastView.setBackgroundResource(R.drawable.background_toast);
-            toast.show();
+            Toast.makeText(getApplicationContext(), getString(R.string.deleted), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
