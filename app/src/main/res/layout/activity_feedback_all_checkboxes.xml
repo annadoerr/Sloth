@@ -1,67 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FeedbackAllCheckboxes">
 
-    <TextView
-        android:id="@+id/z"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="45dp"
-        android:text="@string/sleep"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/z1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="75dp"
-        android:text="@string/sleep"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/z2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="103dp"
-        android:text="@string/sleep"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_toEndOf="@+id/z2"
+                android:contentDescription="@string/allCheckboxes"
+                app:srcCompat="@drawable/ic_faultierschlafend" />
 
-    <ImageView
-        android:id="@+id/slothSleeping"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="120dp"
-        android:contentDescription="@string/allCheckboxes"
-        app:srcCompat="@drawable/ic_faultierschlafend" />
+            <TextView
+                android:id="@+id/z"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="45dp"
+                android:text="@string/sleep"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-    <TextView
-        android:id="@+id/allDone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/slothSleeping"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="0dp"
-        android:padding="30dp"
-        android:text="@string/allDone" />
-</RelativeLayout>
+            <TextView
+                android:id="@+id/z1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="63dp"
+                android:layout_marginTop="75dp"
+                android:text="@string/sleep"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            <TextView
+                android:id="@+id/z2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="103dp"
+                android:text="@string/sleep"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/allDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="63dp"
+            android:layout_marginEnd="0dp"
+            android:padding="30dp"
+            android:text="@string/allDone" />
+
+        <Button
+            android:id="@+id/backtoList1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:onClick="backToEdit"
+            android:text="@string/backToList"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/whiteText" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

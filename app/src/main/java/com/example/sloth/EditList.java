@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
@@ -18,7 +19,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -312,7 +312,7 @@ public class EditList extends AppCompatActivity {
         checkedNumber = String.valueOf(count);
     }
 
-    //Adds save option for note
+    //Adds save option in app bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save_menu, menu);
@@ -321,34 +321,44 @@ public class EditList extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        countChecks();
-        if (item.getItemId() == R.id.save) {
-            listItem.setTitle(enterTitle.getText().toString());
-            listItem.setDate(date.getText().toString());
-            listItem.setTime(time.getText().toString());
-            listItem.setTodo(todo.getText().toString());
-            listItem.setTodo1(todo1.getText().toString());
-            listItem.setTodo2(todo2.getText().toString());
-            listItem.setTodo3(todo3.getText().toString());
-            listItem.setTodo4(todo4.getText().toString());
-            listItem.setTodo5(todo5.getText().toString());
-            listItem.setIsDone(checkedValue);
-            listItem.setIsDone1(checkedValue1);
-            listItem.setIsDone2(checkedValue2);
-            listItem.setIsDone3(checkedValue3);
-            listItem.setIsDone4(checkedValue4);
-            listItem.setIsDone5(checkedValue5);
-            listItem.setCheckedNumber(checkedNumber);
-            int id = db.editList(listItem);
-            if (id == listItem.getID()) {
-                Toast.makeText(this, "List updated", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-            }
+        //Check if all Todos were filled out
+        if(TextUtils.isEmpty(todo.getText().toString()) || TextUtils.isEmpty(todo1.getText().toString()) ||
+                TextUtils.isEmpty(todo2.getText().toString()) || TextUtils.isEmpty(todo3.getText().toString()) ||
+                TextUtils.isEmpty(todo4.getText().toString()) || TextUtils.isEmpty(todo5.getText().toString())) {
+            //If not all Todos were filled out, return the following text
+            Toast.makeText(this, getString(R.string.fillOut), Toast.LENGTH_SHORT).show();
+        } else {
+            //If all Todos were filled out proceed to save edited Infos
+            countChecks();
+            if (item.getItemId() == R.id.save) {
+                listItem.setTitle(enterTitle.getText().toString());
+                listItem.setDate(date.getText().toString());
+                listItem.setTime(time.getText().toString());
+                listItem.setTodo(todo.getText().toString());
+                listItem.setTodo1(todo1.getText().toString());
+                listItem.setTodo2(todo2.getText().toString());
+                listItem.setTodo3(todo3.getText().toString());
+                listItem.setTodo4(todo4.getText().toString());
+                listItem.setTodo5(todo5.getText().toString());
+                listItem.setIsDone(checkedValue);
+                listItem.setIsDone1(checkedValue1);
+                listItem.setIsDone2(checkedValue2);
+                listItem.setIsDone3(checkedValue3);
+                listItem.setIsDone4(checkedValue4);
+                listItem.setIsDone5(checkedValue5);
+                listItem.setCheckedNumber(checkedNumber);
 
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.putExtra("ID", listItem.getID());
-            startActivity(intent);
+                db.editList(listItem);
+                Toast toast = Toast.makeText(this, getString(R.string.updated), Toast.LENGTH_SHORT);
+                View toastView = toast.getView();
+                toastView.setBackgroundResource(R.drawable.background_toast);
+                toast.show();
+
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("ID", listItem.getID());
+                startActivity(intent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

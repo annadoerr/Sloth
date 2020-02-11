@@ -1,21 +1,23 @@
 package com.example.sloth;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
-public class FeedbackAllCheckboxes extends AppCompatActivity {
+public class FeedbackDeadline extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback_all_checkboxes);
+        setContentView(R.layout.activity_feedback_deadline);
 
     }
 
-    public void backToEdit(View v) {
-        finish();
+    public void backToMyTodo(View v) {
+       finish();
     }
 }

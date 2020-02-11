@@ -14,6 +14,7 @@
     <string name="uhr">PM/AM</string>
     <string name="pfeil">Pfeil</string>
     <string name="save">Save</string>
+    <string name="saved">Saved</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="deleted">List Deleted</string>
@@ -30,4 +31,5 @@
     <string name="oneLeaf">Du hast Fauli dem Faultier ein  Blatt gefüttert.  Weiter so!</string>
     <string name="leaf">leaf</string>
     <string name="plusOne">+1</string>
+    <string name="fillOut">Please fill out all todos and pick a date and time.</string>
 </resources>

@@ -7,8 +7,10 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,9 +24,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class ToDoActivity extends AppCompatActivity {
 
@@ -38,8 +38,6 @@ public class ToDoActivity extends AppCompatActivity {
     int count = 0;
     String one;
     Calendar calendar = Calendar.getInstance();
-    String currentDate;
-    String currentTime;
     ListItem listItem;
     DataBase db;
 
@@ -176,7 +174,6 @@ public class ToDoActivity extends AppCompatActivity {
             }
         });
 
-
         //Time Picker
         final Button setTime = findViewById(R.id.time);
 
@@ -222,6 +219,17 @@ public class ToDoActivity extends AppCompatActivity {
 
     }
 
+    //Check if one of the EditText fields is empty
+/*    public boolean isTextEmpty() {
+        if(TextUtils.isEmpty(enterTodo.getText().toString()) || TextUtils.isEmpty(enterTodo1.getText().toString()) ||
+        TextUtils.isEmpty(enterTodo2.getText().toString()) || TextUtils.isEmpty(enterTodo3.getText().toString()) ||
+        TextUtils.isEmpty(enterTodo4.getText().toString()) || TextUtils.isEmpty(enterTodo5.getText().toString())) {
+            Toast.makeText(this, "Please fill out all Todos", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }*/
+
+    //Feedback when one or all checkboxes are checked
     public void checkboxFeedback() {
         final Intent feedback = new Intent(this, FeedbackOneCheckbox.class);
         final Intent feedbackAll = new Intent(this, FeedbackAllCheckboxes.class);
@@ -233,6 +241,7 @@ public class ToDoActivity extends AppCompatActivity {
         }
     }
 
+    //Counts checked Checkboxes
     public void countChecks() {
         //Count number of checked Checkboxes
         one = "1";
@@ -265,21 +274,38 @@ public class ToDoActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.save) {
-            countChecks();
-            listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
-                    enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),
-                    enterTodo5.getText().toString(), checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5, checkedNumber);
-            Log.d("count", "checkBoxCount" + checkedNumber);
-            db = new DataBase(this);
-            db.addItem(listItem);
-            Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
-            gotToMain();
-        }
+            if (item.getItemId() == R.id.save) {
+                //Check if Todos, Date and Time were filled out
+                if(TextUtils.isEmpty(date.getText().toString()) || TextUtils.isEmpty(time.getText().toString()) ||TextUtils.isEmpty(enterTodo.getText().toString()) || TextUtils.isEmpty(enterTodo1.getText().toString()) ||
+                        TextUtils.isEmpty(enterTodo2.getText().toString()) || TextUtils.isEmpty(enterTodo3.getText().toString()) ||
+                        TextUtils.isEmpty(enterTodo4.getText().toString()) || TextUtils.isEmpty(enterTodo5.getText().toString())) {
+                    //If not all Todos were filled out, return the following text
+                    Toast toast = Toast.makeText(this, getString(R.string.fillOut), Toast.LENGTH_SHORT);
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.background_toast);
+                    toast.show();
+                } else{
+                    //If all Todos were filled out proceed to save infos
+                    countChecks();
+                    listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
+                            enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),
+                            enterTodo5.getText().toString(), checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5, checkedNumber);
+                    Log.d("count", "checkBoxCount" + checkedNumber);
+                    db = new DataBase(this);
+                    db.addItem(listItem);
+                    Toast toast = Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT);
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.background_toast);
+                    toast.show();
+                    gotToMain();
+                }
+            }
         return super.onOptionsItemSelected(item);
     }
+
 
     public void gotToMain() {
         Intent intent = new Intent(this, MainActivity.class);

@@ -15,10 +15,11 @@
     <string name="uhr">Uhr</string>
     <string name="pfeil">Pfeil</string>
     <string name="save">Speichern</string>
+    <string name="saved">Gespeichert</string>
     <string name="edit">Bearbeiten</string>
     <string name="delete">Löschen</string>
-    <string name="deleted">Liste Gelöscht</string>
-    <string name="updated">Liste erneuert</string>
+    <string name="deleted">Liste gelöscht</string>
+    <string name="updated">Liste aktualisiert</string>
     <string name="exceeded">Deadline überschritten</string>
     <string name="yourTodo">Dein To-Do</string>
     <string name="rip">RIP</string>
@@ -26,9 +27,10 @@
     <string name="backToList">Zurück zur Liste</string>
     <string name="total">/6</string>
     <string name="allCheckboxes">slothSleep</string>
-    <string name="sleep">ZZZ</string>
+    <string name="sleep">Z</string>
     <string name="allDone">Alles erledigt! Fauli das Faultier wird erstmal ein  Verdauungsschläfchen halten.  Das hast du dir jetzt auch verdient!</string>
     <string name="oneLeaf">Du hast Fauli dem Faultier ein  Blatt gefüttert.  Weiter so!</string>
     <string name="leaf">leaf</string>
     <string name="plusOne">+1</string>
+    <string name="fillOut">Bitte alle To-Dos ausfüllen und Datum und Zeit wählen.</string>
 </resources>

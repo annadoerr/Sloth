@@ -38,7 +38,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/rounded_corners_white"
+                android:background="@drawable/background_list_white"
                 android:ems="10"
                 android:hint="@string/entertitle"
                 android:importantForAutofill="no"
@@ -63,9 +63,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/background_list_item">
+                    android:background="@drawable/rounded_corners_blue">
 
-                    <ImageView
+<!--                    <ImageView
                         android:id="@+id/calendar"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -75,7 +75,7 @@
                         android:background="@color/colorPrimary"
                         android:contentDescription="@string/Date"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_calendar" />
+                        app:srcCompat="@drawable/ic_calendar" />-->
 
                     <Button
                         android:id="@+id/date"
@@ -99,9 +99,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/background_list_item">
+                    android:background="@drawable/rounded_corners_blue">
 
-                    <ImageView
+<!--                    <ImageView
                         android:id="@+id/clock"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -111,7 +111,7 @@
                         android:background="@color/colorPrimary"
                         android:contentDescription="@string/Date"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_clock" />
+                        app:srcCompat="@drawable/ic_clock" />-->
 
                     <Button
                         android:id="@+id/time"
@@ -146,7 +146,6 @@
                     android:id="@+id/todoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/checkbox"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="-10dp"
                     android:layout_marginTop="11dp"
@@ -163,6 +162,7 @@
                     android:id="@+id/checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/todoText"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="10dp"
@@ -175,7 +175,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/todoText"
-                    android:layout_alignBaseline="@+id/checkbox1"
                     android:layout_marginStart="-10dp"
                     android:layout_marginTop="9dp"
                     android:layout_toEndOf="@+id/checkbox1"
@@ -183,7 +182,7 @@
                     android:ems="10"
                     android:hint="@string/yourTodo"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -192,6 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/checkbox"
+                    android:layout_alignBaseline="@+id/todoText1"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
@@ -204,7 +204,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/todoText1"
-                    android:layout_alignBaseline="@+id/checkbox2"
                     android:layout_marginStart="-10dp"
                     android:layout_marginTop="14dp"
                     android:layout_toEndOf="@+id/checkbox2"
@@ -212,7 +211,7 @@
                     android:ems="10"
                     android:hint="@string/yourTodo"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -221,6 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/checkbox1"
+                    android:layout_alignBaseline="@+id/todoText2"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -232,7 +232,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/todoText2"
-                    android:layout_alignBaseline="@+id/checkbox3"
                     android:layout_marginStart="-10dp"
                     android:layout_marginTop="14dp"
                     android:layout_toEndOf="@+id/checkbox"
@@ -240,7 +239,7 @@
                     android:ems="10"
                     android:hint="@string/yourTodo"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -249,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/checkbox2"
+                    android:layout_alignBaseline="@+id/todoText3"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -260,7 +260,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/todoText3"
-                    android:layout_alignBaseline="@+id/checkbox4"
                     android:layout_marginStart="-10dp"
                     android:layout_marginTop="13dp"
                     android:layout_toEndOf="@+id/checkbox"
@@ -268,7 +267,7 @@
                     android:ems="10"
                     android:hint="@string/yourTodo"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -277,6 +276,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/checkbox3"
+                    android:layout_alignBaseline="@+id/todoText4"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -288,7 +288,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/todoText4"
-                    android:layout_alignBaseline="@+id/checkbox5"
                     android:layout_marginStart="-10dp"
                     android:layout_marginTop="14dp"
                     android:layout_toEndOf="@+id/checkbox"
@@ -305,6 +304,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/checkbox4"
+                    android:layout_alignBaseline="@+id/todoText5"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"

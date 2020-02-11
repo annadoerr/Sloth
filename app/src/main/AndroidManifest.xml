@@ -10,26 +10,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".FeedbackOneCheckbox"></activity>
-        <activity android:name=".FeedbackAllCheckboxes" />
-        <activity android:name=".FeedbackOne" />
-        <activity android:name=".EditList">
+        <activity android:name=".FeedbackOneCheckbox"
+            android:screenOrientation="sensorPortrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MainActivity"/>
         </activity>
-        <activity android:name=".MyTodo">
+        <activity android:name=".FeedbackAllCheckboxes"
+            android:screenOrientation="sensorPortrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".FeedbackDeadline"
+            android:screenOrientation="sensorPortrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".EditList"
+            android:screenOrientation="sensorPortrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".MyTodo"
+            android:screenOrientation="sensorPortrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
         </activity>
         <activity android:name=".ListItem" />
-        <activity android:name=".ToDoActivity">
+        <activity android:name=".ToDoActivity"
+            android:screenOrientation="sensorPortrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

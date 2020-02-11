@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,10 +26,6 @@ public class MyTodo extends AppCompatActivity {
     CheckBox checkBox, checkBox1, checkBox2, checkBox3, checkBox4, checkBox5;
     String checkedValue, checkedValue1, checkedValue2, checkedValue3, checkedValue4, checkedValue5;
     String one;
-    Calendar calendar;
-    String todaysDate;
-    String currentTime;
-    String currentDateTime;
     String setTime;
     String setDate;
     String setDateTime;
@@ -75,6 +72,7 @@ public class MyTodo extends AppCompatActivity {
         todo3.setText(listItem.getTodo3());
         todo4.setText(listItem.getTodo4());
         todo5.setText(listItem.getTodo5());
+
         //Set CheckBox to checked if value was saved as 1
         one = "1";
         //Checkbox
@@ -146,19 +144,18 @@ public class MyTodo extends AppCompatActivity {
 
             //Comparing the dates
             if (date1.before(date2)) {
-                Log.e("app", "Date1 is before Date2");
-            }
-
-            if (date1.after(date2)) {
                 if (checkBox.isChecked() && checkBox1.isChecked() && checkBox2.isChecked() &&
                         checkBox3.isChecked() && checkBox4.isChecked() && checkBox5.isChecked()) {
                     Log.e("app", "All Checkboxes were checked before Deadline");
                 } else {
-                    Log.e("app", "Date1 is after Date2");
-                    Intent i = new Intent(this, FeedbackOne.class);
+                    Log.e("app", "Date1 is after Date2.Deadline reached.");
+                    Intent i = new Intent(this, FeedbackDeadline.class);
                     i.putExtra("ID", listItem.getID());
                     startActivity(i);
                 }
+            }
+            if (date1.after(date2)) {
+                Log.e("app", "Date1 is before Date2.Deadline not yet reached.");
             }
 
         } catch (Exception e) {
@@ -177,17 +174,19 @@ public class MyTodo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.edit) {
             //Nutzer zur EditActivity schicken
-            Toast.makeText(this, "Edit", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, EditList.class);
             intent.putExtra("ID", listItem.getID());
             startActivity(intent);
 
         }
         if (item.getItemId() == R.id.delete) {
-
             db.deleteList(listItem.getID());
-            Toast.makeText(getApplicationContext(), getString(R.string.deleted), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.deleted), Toast.LENGTH_SHORT);
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.background_toast);
+            toast.show();
         }
         return super.onOptionsItemSelected(item);
     }
