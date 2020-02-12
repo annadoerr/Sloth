@@ -2,10 +2,8 @@ package com.example.sloth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 public class FeedbackDeadline extends AppCompatActivity {
 
@@ -17,6 +15,7 @@ public class FeedbackDeadline extends AppCompatActivity {
 
     }
 
+    // Goes back to selected list
     public void backToMyTodo(View v) {
        finish();
     }

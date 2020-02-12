@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +25,7 @@ import java.util.Calendar;
 
 public class EditList extends AppCompatActivity {
 
+    // Initialize Variables
     EditText enterTitle;
     EditText todo, todo1, todo2, todo3, todo4, todo5;
     CheckBox checkBox, checkBox1, checkBox2, checkBox3, checkBox4, checkBox5;
@@ -45,22 +45,23 @@ public class EditList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_list);
 
+        // Get ID
         Intent intent = getIntent();
         Long id = intent.getLongExtra("ID", 0);
         db = new DataBase(this);
         listItem = db.getItem(id);
 
-        //Adds AppCompbat Toolbar to Activity
+        // Adds AppCompbat Toolbar to Activity
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         //Changes AppBar Title
         getSupportActionBar().setTitle(listItem.gettitle());
-        //Back Button
+        // Back Button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Changes StatusBar Color
+        // Changes StatusBar Color
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        //Gets Title and ToDos
+        // Assign variables to Views in activity_edit_list
         enterTitle = findViewById(R.id.enterTitle);
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
@@ -77,6 +78,7 @@ public class EditList extends AppCompatActivity {
         checkBox4 = findViewById(R.id.checkbox4);
         checkBox5 = findViewById(R.id.checkbox5);
 
+        // Assigns title and todos to ListItem class title and todos
         enterTitle.setText(listItem.gettitle());
         date.setText(listItem.getDate());
         time.setText(listItem.getTime());
@@ -86,18 +88,18 @@ public class EditList extends AppCompatActivity {
         todo3.setText(listItem.getTodo3());
         todo4.setText(listItem.getTodo4());
         todo5.setText(listItem.getTodo5());
-        //Set CheckBox to checked if value was saved as 1
-        checkedValue = listItem.getIsDone();
-        one = "1";
-        Log.d("Value", "checked?" + " + " + checkedValue);
 
+        // Set CheckBox to checked if value was saved as 1
+        one = "1";
+        //Checkbox
+        checkedValue = listItem.getIsDone();
         if (checkedValue.equals(one)) {
             checkBox.setChecked(true);
         } else {
             checkBox.setChecked(false);
         }
 
-        //Checkbox1
+        // Checkbox1
         checkedValue1 = listItem.getIsDone1();
         if (checkedValue1.equals(one)) {
             checkBox1.setChecked(true);
@@ -105,7 +107,7 @@ public class EditList extends AppCompatActivity {
             checkBox1.setChecked(false);
         }
 
-        //Checkbox2
+        // Checkbox2
         checkedValue2 = listItem.getIsDone2();
         if (checkedValue2.equals(one)) {
             checkBox2.setChecked(true);
@@ -113,7 +115,7 @@ public class EditList extends AppCompatActivity {
             checkBox2.setChecked(false);
         }
 
-        //Checkbox3
+        // Checkbox3
         checkedValue3 = listItem.getIsDone3();
         if (checkedValue3.equals(one)) {
             checkBox3.setChecked(true);
@@ -121,7 +123,7 @@ public class EditList extends AppCompatActivity {
             checkBox3.setChecked(false);
         }
 
-        //Checkbox4
+        // Checkbox4
         checkedValue4 = listItem.getIsDone4();
         if (checkedValue4.equals(one)) {
             checkBox4.setChecked(true);
@@ -129,7 +131,7 @@ public class EditList extends AppCompatActivity {
             checkBox4.setChecked(false);
         }
 
-        //Checkbox5
+        // Checkbox5
         checkedValue5 = listItem.getIsDone5();
         if (checkedValue5.equals(one)) {
             checkBox5.setChecked(true);
@@ -137,7 +139,7 @@ public class EditList extends AppCompatActivity {
             checkBox5.setChecked(false);
         }
 
-        // CheckBox onchanged Listener
+        // CheckBox on Change Listener and call checkBoxFeedback method
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -150,7 +152,7 @@ public class EditList extends AppCompatActivity {
             }
         });
 
-        // CheckBox1 onchanged Listener
+        // CheckBox1 on Change Listener
         checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -163,7 +165,7 @@ public class EditList extends AppCompatActivity {
             }
         });
 
-        // CheckBox2 onchanged Listener
+        // CheckBox2 on Change Listener
         checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -176,7 +178,7 @@ public class EditList extends AppCompatActivity {
             }
         });
 
-        // CheckBox3 onchanged Listener
+        // CheckBox3 on Change Listener
         checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -189,7 +191,7 @@ public class EditList extends AppCompatActivity {
             }
         });
 
-        // CheckBox4 onchanged Listener
+        // CheckBox4 on Change Listener
         checkBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -203,7 +205,7 @@ public class EditList extends AppCompatActivity {
         });
 
 
-        // CheckBox5 onchanged Listener
+        // CheckBox5 on Change Listener
         checkBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -216,6 +218,7 @@ public class EditList extends AppCompatActivity {
             }
         });
 
+        // Changes App Bar Title to title in enterTitle
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -277,19 +280,22 @@ public class EditList extends AppCompatActivity {
         });
     }
 
+    // Feedback for Checkbox checked
     public void checkboxFeedback() {
         final Intent feedback = new Intent(this, FeedbackOneCheckbox.class);
         final Intent feedbackAll = new Intent(this, FeedbackAllCheckboxes.class);
         if (checkBox.isChecked() && checkBox1.isChecked() && checkBox2.isChecked() &&
                 checkBox3.isChecked() && checkBox4.isChecked() && checkBox5.isChecked()) {
+            // Feedback if all are checked
             startActivity(feedbackAll);
         } else {
+            // Feedback if one is checked
             startActivity(feedback);
         }
     }
 
     public void countChecks() {
-        //Count number of checked Checkboxes
+        // Count number of checked Checkboxes
         one = "1";
         if (checkedValue.equals(one)) {
             count++;
@@ -309,10 +315,11 @@ public class EditList extends AppCompatActivity {
         if (checkedValue5.equals(one)) {
             count++;
         }
+        // Assigns number of checked Checkboxes to checkedNumber String
         checkedNumber = String.valueOf(count);
     }
 
-    //Adds save option in app bar
+    // Adds save menu in app bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save_menu, menu);
@@ -321,16 +328,14 @@ public class EditList extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //Check if all Todos were filled out
-        if(TextUtils.isEmpty(todo.getText().toString()) || TextUtils.isEmpty(todo1.getText().toString()) ||
-                TextUtils.isEmpty(todo2.getText().toString()) || TextUtils.isEmpty(todo3.getText().toString()) ||
-                TextUtils.isEmpty(todo4.getText().toString()) || TextUtils.isEmpty(todo5.getText().toString())) {
-            //If not all Todos were filled out, return the following text
+        // Check if date and time were picked
+        if(TextUtils.isEmpty(date.getText().toString()) || TextUtils.isEmpty(time.getText().toString())) {
+            // If date AND time were not picked, return the following text
             Toast.makeText(this, getString(R.string.fillOut), Toast.LENGTH_SHORT).show();
         } else {
-            //If all Todos were filled out proceed to save edited Infos
-            countChecks();
+            // If date and time were picked proceed to save edited Infos
             if (item.getItemId() == R.id.save) {
+                countChecks();
                 listItem.setTitle(enterTitle.getText().toString());
                 listItem.setDate(date.getText().toString());
                 listItem.setTime(time.getText().toString());

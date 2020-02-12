@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/timeView"
-            style="@style/timeView"
+            style="@style/listView"
             android:text="@string/Zeit" />
 
         <ImageView

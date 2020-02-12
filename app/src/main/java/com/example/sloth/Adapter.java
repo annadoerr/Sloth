@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+
+// Adapts text from ToDoActivity to List Item layout
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     LayoutInflater inflater;
     List<ListItem> items;
@@ -57,7 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             timeView = itemView.findViewById(R.id.timeView);
             checkedNumber = itemView.findViewById(R.id.checkedNumber);
 
-            //Infos zu To-Do, auf das man gerade geklickt hat an MyTodo weitergeben
+            // Get ID of clicked item and open details of the clicked item
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

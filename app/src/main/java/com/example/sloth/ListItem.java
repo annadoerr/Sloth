@@ -2,6 +2,7 @@ package com.example.sloth;
 
 public class ListItem {
 
+    // Initialize types of data that need to be saved
     private long ID;
     private String title;
     private String date;
@@ -23,7 +24,7 @@ public class ListItem {
 
 
 
-    //ListItem without ID
+    // ListItem without ID
     ListItem(String title, String date, String time, String todo, String todo1, String todo2, String todo3, String todo4, String todo5,
              String isDone, String isDone1, String isDone2, String isDone3, String isDone4, String isDone5, String checkedNumber ) {
         this.title = title;
@@ -45,7 +46,7 @@ public class ListItem {
         this.checkedNumber = checkedNumber;
 
     }
-    //ListItem with ID
+    // ListItem with ID
     ListItem(long id, String title, String date, String time, String todo, String todo1, String todo2, String todo3, String todo4, String todo5,
              String isDone, String isDone1, String isDone2,String isDone3, String isDone4, String isDone5, String checkedNumber) {
         this.ID = id;
@@ -68,8 +69,10 @@ public class ListItem {
         this.checkedNumber = checkedNumber;
     }
 
-    //Instance of ListItem
+    // Instance of ListItem
     ListItem() {}
+
+    // Get and set methods
 
     public long getID() {
         return ID;

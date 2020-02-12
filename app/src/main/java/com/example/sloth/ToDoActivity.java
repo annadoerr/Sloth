@@ -27,6 +27,7 @@ import java.util.Calendar;
 
 public class ToDoActivity extends AppCompatActivity {
 
+    // Initialize Variables
     EditText enterTitle;
     Button date;
     Button time;
@@ -44,18 +45,18 @@ public class ToDoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
-        //Adds AppCompbat Toolbar to Activity
+        // Adds AppCompbat Toolbar to Activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        //Changes AppBar Title
+        // Changes AppBar Title
         getSupportActionBar().setTitle(R.string.todoTitle);
-        //Back Button
+        // Back Button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Changes StatusBar Color
+        // Changes StatusBar Color
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
 
-        //Gets Title and ToDos, Date and Time
+        // Assign variables to Views in activity_to_do
         enterTitle = findViewById(R.id.enterTitle);
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
@@ -78,7 +79,7 @@ public class ToDoActivity extends AppCompatActivity {
         checkedValue4 = "0";
         checkedValue5 = "0";
 
-        // CheckBox onchanged Listener and Open Feedback if a checkbox is checked
+        // CheckBox on Change Listener and call checkBoxFeedback method
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -91,7 +92,7 @@ public class ToDoActivity extends AppCompatActivity {
             }
         });
 
-        // CheckBox1 onchanged Listener
+        // CheckBox1 on Change Listener
         checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -104,6 +105,7 @@ public class ToDoActivity extends AppCompatActivity {
             }
         });
 
+        // CheckBox2 on Change Listener
         checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -117,6 +119,7 @@ public class ToDoActivity extends AppCompatActivity {
             }
         });
 
+        // CheckBox3 on Change Listener
         checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -129,6 +132,7 @@ public class ToDoActivity extends AppCompatActivity {
             }
         });
 
+        // CheckBox4 on Change Listener
         checkBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -141,6 +145,7 @@ public class ToDoActivity extends AppCompatActivity {
             }
         });
 
+        // CheckBox5 on Change Listener
         checkBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -154,6 +159,7 @@ public class ToDoActivity extends AppCompatActivity {
         });
 
 
+        // Changes App Bar Title to title in enterTitle
         enterTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -218,31 +224,22 @@ public class ToDoActivity extends AppCompatActivity {
 
     }
 
-    //Check if one of the EditText fields is empty
-/*    public boolean isTextEmpty() {
-        if(TextUtils.isEmpty(enterTodo.getText().toString()) || TextUtils.isEmpty(enterTodo1.getText().toString()) ||
-        TextUtils.isEmpty(enterTodo2.getText().toString()) || TextUtils.isEmpty(enterTodo3.getText().toString()) ||
-        TextUtils.isEmpty(enterTodo4.getText().toString()) || TextUtils.isEmpty(enterTodo5.getText().toString())) {
-            Toast.makeText(this, "Please fill out all Todos", Toast.LENGTH_SHORT).show();
-        }
-        return false;
-    }*/
-
     //Feedback when one or all checkboxes are checked
     public void checkboxFeedback() {
         final Intent feedback = new Intent(this, FeedbackOneCheckbox.class);
         final Intent feedbackAll = new Intent(this, FeedbackAllCheckboxes.class);
         if (checkBox.isChecked() && checkBox1.isChecked() && checkBox2.isChecked() &&
                 checkBox3.isChecked() && checkBox4.isChecked() && checkBox5.isChecked()) {
+            // Feedback if all are checked
             startActivity(feedbackAll);
         } else {
+            // Feedback if one is checked
             startActivity(feedback);
         }
     }
 
-    //Counts checked Checkboxes
     public void countChecks() {
-        //Count number of checked Checkboxes
+        // Count number of checked Checkboxes
         one = "1";
         if (checkedValue.equals(one)) {
             count++;
@@ -266,7 +263,7 @@ public class ToDoActivity extends AppCompatActivity {
     }
 
 
-    //Adds save option for note
+    // Adds save menu to app bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save_menu, menu);
@@ -277,14 +274,12 @@ public class ToDoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
             if (item.getItemId() == R.id.save) {
-                //Check if Todos, Date and Time were filled out
-                if(TextUtils.isEmpty(date.getText().toString()) || TextUtils.isEmpty(time.getText().toString()) || TextUtils.isEmpty(enterTodo.getText().toString()) || TextUtils.isEmpty(enterTodo1.getText().toString()) ||
-                        TextUtils.isEmpty(enterTodo2.getText().toString()) || TextUtils.isEmpty(enterTodo3.getText().toString()) ||
-                        TextUtils.isEmpty(enterTodo4.getText().toString()) || TextUtils.isEmpty(enterTodo5.getText().toString())) {
-                    //If not all Todos were filled out, return the following text
+                // Check if Date and Time were picked
+                if(TextUtils.isEmpty(date.getText().toString()) || TextUtils.isEmpty(time.getText().toString())) {
+                    // If date AND time were not picked, return the following text
                     Toast.makeText(this, getString(R.string.fillOut), Toast.LENGTH_SHORT).show();
                 } else{
-                    //If all Todos were filled out proceed to save infos
+                    //If date and time were picked, proceed to save infos
                     countChecks();
                     listItem = new ListItem(enterTitle.getText().toString(), date.getText().toString(), time.getText().toString(), enterTodo.getText().toString(),
                             enterTodo1.getText().toString(), enterTodo2.getText().toString(), enterTodo3.getText().toString(), enterTodo4.getText().toString(),
@@ -292,14 +287,14 @@ public class ToDoActivity extends AppCompatActivity {
                     Log.d("count", "checkBoxCount" + checkedNumber);
                     db = new DataBase(this);
                     db.addItem(listItem);
-                    Toast.makeText(this, getString(R.string.save), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
                     gotToMain();
                 }
             }
         return super.onOptionsItemSelected(item);
     }
 
-
+    // Go to Main Activity method
     public void gotToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

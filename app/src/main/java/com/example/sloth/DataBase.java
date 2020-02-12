@@ -22,7 +22,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    //column names for db
+    // Column names for db; to-do and checkboxes are static
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
     private static final String KEY_DATE = "date";
@@ -42,7 +42,7 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String KEY_CHECKED_NUMBER = "checkedNumber";
 
 
-    // CREATE TABLE
+    // Create table
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createDb = "CREATE TABLE " + TABLE_NAME + " (" +
@@ -67,6 +67,7 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(createDb);
     }
 
+    // Update table
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion >= newVersion)
@@ -77,6 +78,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
+    // Adds Items from ListItem Class
     public long addItem(ListItem listItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues c = new ContentValues();
@@ -103,8 +105,8 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
+    // Gets Items based on id
     public ListItem getItem(long id) {
-        // Select all from databaseTable where id=1
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_ID, KEY_TITLE, KEY_DATE, KEY_TIME, KEY_TODO, KEY_TODO1, KEY_TODO2, KEY_TODO3,
                         KEY_TODO4, KEY_TODO5, KEY_DONE, KEY_DONE1, KEY_DONE2, KEY_DONE3, KEY_DONE4, KEY_DONE5, KEY_CHECKED_NUMBER}, KEY_ID + "=?",
@@ -135,6 +137,7 @@ public class DataBase extends SQLiteOpenHelper {
         return item;
     }
 
+    // Creates array list with items
     public List<ListItem> getallItems() {
         List<ListItem> allItems = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -171,6 +174,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
+    // Saves edited Infos from EditList and MyTodo class to Datatable
     public int editList(ListItem listItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues c = new ContentValues();
@@ -196,6 +200,7 @@ public class DataBase extends SQLiteOpenHelper {
         return db.update(TABLE_NAME, c, KEY_ID + "=?", new String[]{String.valueOf(listItem.getID())});
     }
 
+    // Deletes List
     public void deleteList(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, KEY_ID + "=?", new String[]{String.valueOf(id)});

@@ -24,17 +24,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Adds AppCompbat Toolbar to Activity
+        // Adds AppCompbat Toolbar to Activity
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-        //Changes AppBar Title
+        // Changes AppBar Title
         getSupportActionBar().setTitle(R.string.listTitle);
 
-        //Changes StatusBar Color
+        // Changes StatusBar Color
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        //Display Lists
+        // Display Lists
         DataBase db = new DataBase(this);
         items = db.getallItems();
         recyclerView = findViewById(R.id.allLists);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //What happens when "add" button on MainActivity gets clicked
+    // When "Add List" button on MainActivity gets clicked
     public void addListClicked(View v) {
         Intent intent = new Intent(this, ToDoActivity.class);
         startActivity(intent);

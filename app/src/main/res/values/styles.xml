@@ -9,7 +9,14 @@
         <item name="android:textColorPrimary">@color/whiteText</item>
     </style>
 
-    <style name="timeView">
+    <!--Style for Popup menu -->
+    <style name="PopupMenu" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:background">@color/colorPrimaryDark</item>
+    <item name="android:textColorPrimary">@color/whiteText</item>
+</style>
+
+    <!--Style for list elements-->
+    <style name="listView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignBaseline">@id/deadline</item>

@@ -12,6 +12,7 @@
     <string name="Zeit">Time</string>
     <string name="pfeil">Pfeil</string>
     <string name="save">Save</string>
+    <string name="saved">Saved</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="deleted">List Deleted</string>
@@ -22,10 +23,8 @@
     <string name="backToList">Back to List</string>
     <string name="total">/6</string>
     <string name="allCheckboxes">slothSleep</string>
-    <string name="sleep">Z</string>
     <string name="allDone">All done! Slothy the Sloth is gonna take a digestive nap now. You\'ve earned it too!</string>
     <string name="oneLeaf">You fed Slothy the Sloth a leaf. Keep it up!</string>
     <string name="leaf">leaf</string>
-    <string name="plusOne">+1</string>
-    <string name="fillOut">Please fill out all todos and pick a date and time.</string>
+    <string name="fillOut">Please pick a date and time.</string>
 </resources>
